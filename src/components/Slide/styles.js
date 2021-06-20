@@ -1,5 +1,7 @@
 import {StyleSheet, Dimensions} from 'react-native';
-const VIDEO_SIZE = Dimensions.get('window').width - 50
+
+const CONTAINER_PADDING = Dimensions.get('window').width * .05
+const VIDEO_SIZE = Dimensions.get('window').width - (CONTAINER_PADDING * 2)
 
 const ITEM_HEIGHT = Dimensions.get('window').height-130
 
@@ -14,7 +16,7 @@ const styles = StyleSheet.create({
     //used
     container: {
         width: '100%',
-        padding: '5%',
+        padding: CONTAINER_PADDING,
         height: ITEM_HEIGHT,
         backgroundColor: 'white'
     },
@@ -33,6 +35,21 @@ const styles = StyleSheet.create({
     },
     iconContainer: {
         alignItems: 'center'
+    },
+    likeContainer: {
+        width: 50,
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#F9D966',
+        borderBottomRightRadius: 15,
+        borderBottomLeftRadius: 15,
+        borderTopRightRadius: 15
+    },
+    locationText: {
+        color: '#c4c4c4',
+        fontSize: 18,
+        fontWeight: '500',
     },
     pauseButton: {
         //flex: 1,
@@ -67,22 +84,27 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     songName: {
-    color: '#fff',
-    fontSize: 16,
-    marginLeft: 5,
+        color: '#fff',
+        fontSize: 16,
+        marginLeft: 5,
     },
     songImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    borderWidth: 5,
-    borderColor: '#4c4c4c',
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        borderWidth: 5,
+        borderColor: '#4c4c4c',
     },
     timestampText: {
         paddingLeft: 10,
         color: '#c4c4c4',
         fontSize: 14,
         fontWeight: '500',
+    },
+    titleText: {
+        color: '#000',
+        fontSize: 20,
+        fontWeight: '700',
     },
     uiContainer: {
         height: '100%',

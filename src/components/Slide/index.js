@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TouchableWithoutFeedback, Image, Alert, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableWithoutFeedback, Image, Alert, TouchableOpacity, Button} from 'react-native';
 import { Audio, Video } from 'expo-av';
 import styles from './styles';
 //import {Storage} from 'aws-amplify';
@@ -51,6 +51,7 @@ const Slide = (props) => {
         console.log('paused?')
         //console.log(props.currentIndex.current)
         console.log(post)
+        console.log('hey bella!')
         setPaused(!paused);
     };
 
@@ -103,23 +104,22 @@ const Slide = (props) => {
 
             {/* Top handle info */}
             <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingBottom: 10}}>
-            <TouchableOpacity style={{flexDirection: 'row'}}>
-                <Image style={styles.profilePicture} source={headshot}/>
-                <View>
-                    <Text style={styles.handleText}>sophiadew</Text>
-                    <Text style={styles.timestampText}>6 minutes ago</Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity style={{flexDirection: 'row'}}>
-                <Image style={{ width: 40, height:40 }} source={slideEdit}/>
-            </TouchableOpacity>
+                <TouchableOpacity style={{flexDirection: 'row'}}>
+                    <Image style={styles.profilePicture} source={headshot}/>
+                    <View>
+                        <Text style={styles.handleText}>sophiadew</Text>
+                        <Text style={styles.timestampText}>6 minutes ago</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity style={{flexDirection: 'row'}}>
+                    <Image style={{ width: 40, height:40 }} source={slideEdit}/>
+                </TouchableOpacity>
             </View>
 
             <TouchableWithoutFeedback style={styles.videoPlayButton}>
                 <View>
                     <TouchableWithoutFeedback onPress={onPlayPausePress} style={styles.videoContainer}>
                         <View>
-                            {/* <Ionicons name={'caret-forward'} size={80} color={paused ? 'white' : 'transparent'} /> */}
                             <Video
                                 source={{uri: post.videoUri}}
                                 style={styles.video}
@@ -127,7 +127,6 @@ const Slide = (props) => {
                                 resizeMode= {'cover'}
                                 isLooping = {true}
                                 shouldPlay={!paused}
-                                //shouldPlay={(props.currentIndex.current == props.index)}
                             />
                             
 
@@ -136,40 +135,21 @@ const Slide = (props) => {
                             </View>
                         </View>
                     </TouchableWithoutFeedback>
-                
-
-                    <View style={styles.uiContainer}>
-                        <View style={styles.rightContainer}>
-                            <Image style={styles.profilePicture} source={{uri: post.user.imageUri}}/>
-                        
-                            <TouchableOpacity style={styles.iconContainer} onPress={onLikePress}>
-                                <Ionicons name={'heart'} size={40} color={isLiked ? 'red' : 'white'}/>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity style={styles.iconContainer} onPress={onComment}>
-                                <Ionicons name={'chatbubble-ellipses'} size={35} color="white" />
-                            </TouchableOpacity>
-
-                            
-                        </View>
-
-                        <View style={styles.bottomContainer}>
-                            <View> 
-                                
-                                <Text style={styles.handle}>@{post.user.username}</Text>
-                                <Text style={styles.description}>{post.description}</Text>
-
-                            </View>
-
-                            <TouchableOpacity style={styles.iconContainer} onPress={reportVideo}>
-                                <Ionicons name={'ellipsis-horizontal'} style={{paddingRight: 10}}size={30} color="white" />
-                                <Text style={styles.statsLabel}>{post.shares}</Text>
-                            </TouchableOpacity>
-                            
-                        </View>
-                    </View>
                 </View>
             </TouchableWithoutFeedback>
+
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 10}}>
+                <View>
+                    <Text style ={styles.titleText}>Title of vlog</Text>
+                    <Text style ={styles.locationText}>Location</Text>
+                </View>
+                <TouchableOpacity style={styles.likeContainer} onPress={()=>console.log('pressed')}>
+                    <Ionicons name={'heart-outline'} size={25} color={'white'} />
+                </TouchableOpacity>
+            </View>
+
+            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+
         </View>
     )
 }

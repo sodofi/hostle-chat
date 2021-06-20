@@ -13,7 +13,7 @@ const Inbox = () => {
                 <View style={{flexDirection: 'row'}}>
                     <Image style={styles.profileImage} source={headshot}/>
                     <Text style={styles.text}>
-                        <Text style={{fontWeight: "bold"}}>@sophiadew</Text>
+                        <Text style={{fontWeight: "bold"}}>@sophiadewww</Text>
                         <Text> liked your latest post</Text>
                         <Text style={{color: 'gray'}}> 2d</Text>
                     </Text>
