@@ -9,10 +9,14 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import slideEdit from '../../assets/slide-edit.png'
+//delete later
+import headshot from '../../assets/headshot.jpeg'
+
 const Slide = (props) => {
     const [post, setPost] = useState(props.post);
     const [isLiked, setIsLiked] = useState(false);
-    const [paused, setPaused] = useState(false);   
+    const [paused, setPaused] = useState(true);   
     //const [isPlaying, setIsPlaying] = useState(true)        
     //const [videoUri, setVideoUri] = useState('');
 
@@ -96,21 +100,42 @@ const Slide = (props) => {
 
     return (
         <View style={styles.container}>
-            <TouchableWithoutFeedback onPress={onPlayPausePress} style={styles.videoPlayButton}>
-                <View>
-                    <Video
-                        source={{uri: post.videoUri}}
-                        style={styles.video}
-                        onError={(e) => console.log(e)}
-                        resizeMode= {'cover'}
-                        isLooping = {true}
-                        shouldPlay={!paused}
-                        //shouldPlay={(props.currentIndex.current == props.index)}
-                    />
 
-                    <View style={styles.pauseButton}>
-                        <Ionicons name={'caret-forward'} size={80} color={paused ? 'white' : 'transparent'} />
-                    </View>
+            {/* Top handle info */}
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingBottom: 10}}>
+            <TouchableOpacity style={{flexDirection: 'row'}}>
+                <Image style={styles.profilePicture} source={headshot}/>
+                <View>
+                    <Text style={styles.handleText}>sophiadew</Text>
+                    <Text style={styles.timestampText}>6 minutes ago</Text>
+                </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={{flexDirection: 'row'}}>
+                <Image style={{ width: 40, height:40 }} source={slideEdit}/>
+            </TouchableOpacity>
+            </View>
+
+            <TouchableWithoutFeedback style={styles.videoPlayButton}>
+                <View>
+                    <TouchableWithoutFeedback onPress={onPlayPausePress} style={styles.videoContainer}>
+                        <View>
+                            {/* <Ionicons name={'caret-forward'} size={80} color={paused ? 'white' : 'transparent'} /> */}
+                            <Video
+                                source={{uri: post.videoUri}}
+                                style={styles.video}
+                                onError={(e) => console.log(e)}
+                                resizeMode= {'cover'}
+                                isLooping = {true}
+                                shouldPlay={!paused}
+                                //shouldPlay={(props.currentIndex.current == props.index)}
+                            />
+                            
+
+                            <View style={styles.pauseButton}>
+                                <Ionicons name={'caret-forward'} size={80} color={paused ? 'white' : 'transparent'} />
+                            </View>
+                        </View>
+                    </TouchableWithoutFeedback>
                 
 
                     <View style={styles.uiContainer}>

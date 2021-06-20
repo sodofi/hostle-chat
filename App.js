@@ -1,16 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, SafeAreaView, Text, View } from 'react-native';
 import Home from './src/screens/Home'
 import 'react-native-gesture-handler'
+import Navigation from './src/navigation';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      {/* <Text>Open up App.js to start working on your app!</Text> */}
-      <Home />
-      <StatusBar style="auto" />
-    </View>
+    // <View style={styles.container}>
+    //   {/* <Text>Open up App.js to start working on your app!</Text> */}
+    //   {/* <Home />
+    //   <StatusBar style="auto" /> */}
+    //   <Navigation/>
+    // </View>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'black'}}>
+      {/* <Text>Open up App.js to start working on your app!</Text>
+      <AntDesign name={'stepforward'} size={30} />
+      <StatusBar style="auto" /> */}
+      <StatusBar style="light" /> 
+      <Navigation/>
+    </SafeAreaView>
   );
 }
 

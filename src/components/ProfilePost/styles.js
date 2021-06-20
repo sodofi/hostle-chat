@@ -1,22 +1,18 @@
 import {StyleSheet, Dimensions} from 'react-native';
-const VIDEO_SIZE = Dimensions.get('window').width - 50
 
 const ITEM_HEIGHT = Dimensions.get('window').height-130
-
+const WIDTH = Dimensions.get('window').width
 
 const styles = StyleSheet.create({
     bottomContainer: {
-        paddingLeft: 10,
+        padding: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-end',
     },
-    //used
     container: {
-        width: '100%',
-        padding: '5%',
-        height: ITEM_HEIGHT,
-        backgroundColor: 'white'
+        width: WIDTH/3,
+        height: ITEM_HEIGHT/3,
     },
     description: {
         color: '#fff',
@@ -24,36 +20,33 @@ const styles = StyleSheet.create({
         fontWeight: '300',
         marginBottom: 10,
     },
-    handleText: {
-        paddingLeft: 10,
-        color: '#000',
+    handle: {
+        color: '#fff',
         fontSize: 16,
         fontWeight: '700',
-        marginBottom: 5,
+        marginBottom: 10,
     },
     iconContainer: {
         alignItems: 'center'
     },
     pauseButton: {
-        //flex: 1,
+        flex: 1,
         alignSelf: 'center',
-        //justifyContent: 'center',
+        justifyContent: 'center',
         //alignItems: 'center',
         position: 'absolute',
-        marginTop: VIDEO_SIZE/2 - 40,
+        marginTop: ITEM_HEIGHT/2 - 50,
     },  
-    //used
     profilePicture: {
         width: 50,
         height: 50,
         borderRadius: 25,
         borderWidth: 2,
-        borderColor: '#30A6A6',
+        borderColor: '#fff',
     },
     rightContainer: {
         alignSelf: 'flex-end',
-        marginBottom: 20,
-        height: 200,
+        height: 220,
         justifyContent: 'space-between',
     },
     statsLabel:{
@@ -78,36 +71,16 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: '#4c4c4c',
     },
-    timestampText: {
-        paddingLeft: 10,
-        color: '#c4c4c4',
-        fontSize: 14,
-        fontWeight: '500',
-    },
     uiContainer: {
         height: '100%',
         justifyContent: 'flex-end',
     },
-    //used
     video: {
-        //flex: 1,
-        width: VIDEO_SIZE,
-        height: VIDEO_SIZE,
-        borderRadius: 20,
-        //position: 'absolute',
-        //top: 0,
-        //left: 0,
-        //bottom: 0,
-        //right: 0,
-    },
-    //used
-    videoContainer: {
-        flex: 1,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        alignContent: 'center',
-        width: VIDEO_SIZE,
-        height: VIDEO_SIZE,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
     },
     videoPlayButton: {
         position: 'absolute',
