@@ -2,8 +2,7 @@ import React from 'react'
 import {View, Text, Image, TextInput, TouchableOpacity, Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import HomeBottomTabNavigator from './homeBottomTabNavigator'
-import Home from '../screens/Home'
+import Profile from '../screens/Profile'
 import Activity from '../screens/Activity'
 import Search from '../screens/Search'
 import CreatePost from '../screens/CreatePost'
@@ -22,26 +21,9 @@ const RootNavigation = () => {
             
             >
                 <Stack.Screen 
-                    name="Home" 
-                    component={HomeBottomTabNavigator} 
-                    options={({navigation, route}) => ({
-                        headerLeft: () => (
-
-                            <Image style={{marginLeft: 10, width: 80, resizeMode: 'contain'}} source={logo}/>
-                        ),
-                        headerRight: () => (
-                            <View style={{flexDirection: 'row'}}>
-                                <TouchableOpacity onPress={() => navigation.navigate('Activity')}>
-                                    <Ionicons name={'heart-outline'} size={25} color={'black'} />
-                                </TouchableOpacity>
-                                <TouchableOpacity style={{marginHorizontal: 10}} onPress={() => navigation.navigate('Search')}>
-                                    <Ionicons name={'search'} size={25} color={'black'} />
-                                </TouchableOpacity>
-                            </View>
-                        ),
-                        headerTitleStyle: {color: 'white'},
-                        headerStyle: {height: 50}
-                    })} />
+                    name="Profile" 
+                    component={Profile} 
+                     />
                         
                         
                 <Stack.Screen 

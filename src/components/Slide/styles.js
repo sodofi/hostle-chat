@@ -3,7 +3,7 @@ import {StyleSheet, Dimensions} from 'react-native';
 const CONTAINER_PADDING = Dimensions.get('window').width * .05
 const VIDEO_SIZE = Dimensions.get('window').width - (CONTAINER_PADDING * 2)
 
-const ITEM_HEIGHT = Dimensions.get('window').height-130
+const ITEM_HEIGHT = Dimensions.get('window').height-310
 
 
 const styles = StyleSheet.create({

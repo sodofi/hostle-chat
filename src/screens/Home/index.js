@@ -13,7 +13,7 @@ import posts from '../../../data/slides'
 
 //Amplify.configure(config)
 
-const ITEM_HEIGHT = Dimensions.get('window').height-130;
+const ITEM_HEIGHT = Dimensions.get('window').height-310;
 
 const Home = () => {
 

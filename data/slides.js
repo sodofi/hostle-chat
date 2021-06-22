@@ -46,4 +46,21 @@ export default [
       comments: 12,
       shares: 44,
     },
+
+    {
+      id: 'p4',
+      videoUri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+      user: {
+        id: 'u1',
+        username: 'daviddobrik',
+        imageUri: 'https://influencermarketinghub.com/wiki/wp-content/uploads/2020/08/1657369265111046_c5_720x720.jpeg',
+      },
+      description: 'hahahah oh boy @borat',
+      songName: 'NF - The search',
+      songImage: 'https://influencermarketinghub.com/wiki/wp-content/uploads/2020/08/1657369265111046_c5_720x720.jpeg',
+      likes: 123,
+      comments: 12,
+      shares: 44,
+    },
+    
   ]

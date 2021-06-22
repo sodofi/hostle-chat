@@ -3,7 +3,8 @@ import React from 'react';
 import { StyleSheet, SafeAreaView, Text, View } from 'react-native';
 import Home from './src/screens/Home'
 import 'react-native-gesture-handler'
-import Navigation from './src/navigation';
+import TabNavigation from './src/navigation/homeBottomTabNavigator';
+import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
   return (
@@ -18,7 +19,10 @@ export default function App() {
       <AntDesign name={'stepforward'} size={30} />
       <StatusBar style="auto" /> */}
       <StatusBar style="light" /> 
-      <Navigation/>
+      <NavigationContainer>
+        <TabNavigation/>
+      </NavigationContainer>
+      
     </SafeAreaView>
   );
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import {View, Text, Image, TextInput, TouchableOpacity, Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import HomeBottomTabNavigator from './homeBottomTabNavigator'
 import Home from '../screens/Home'
 import Activity from '../screens/Activity'
 import Search from '../screens/Search'
@@ -23,7 +22,7 @@ const RootNavigation = () => {
             >
                 <Stack.Screen 
                     name="Home" 
-                    component={HomeBottomTabNavigator} 
+                    component={Home} 
                     options={({navigation, route}) => ({
                         headerLeft: () => (
 
@@ -44,54 +43,7 @@ const RootNavigation = () => {
                     })} />
                         
                         
-                <Stack.Screen 
-                    name="CreatePost" 
-                    component={CreatePost} 
-                    options={({navigation, route}) => ({
-                        headerLeft: () => (
-                            <TouchableOpacity onPress={() => navigation.pop()}>
-                                <Ionicons name={'chevron-back'} size={25} color={'black'} />
-                            </TouchableOpacity>
-                        ),
-                        title: "Post",
-                        headerTitleStyle: {
-                          fontSize: 16,
-                          fontWeight: '600'
-                        }
-                    })}
-                />
-                <Stack.Screen 
-                    name="EditProfile" 
-                    component={EditProfile} 
-                    options={({navigation, route}) => ({
-                        headerLeft: () => (
-                            <TouchableOpacity onPress={() => navigation.pop()}>
-                                <Ionicons name={'chevron-back'} size={25} color={'black'} />
-                            </TouchableOpacity>
-                        ),
-                        title: "Edit Profile",
-                        headerTitleStyle: {
-                          fontSize: 16,
-                          fontWeight: '600'
-                        }
-                    })}
-                />
-                <Stack.Screen 
-                    name="Activity" 
-                    component={Activity} 
-                    options={({navigation, route}) => ({
-                        headerLeft: () => (
-                            <TouchableOpacity onPress={() => navigation.pop()}>
-                                <Ionicons name={'chevron-back'} size={25} color={'black'} />
-                            </TouchableOpacity>
-                        ),
-                        title: "Activity",
-                        headerTitleStyle: {
-                          fontSize: 16,
-                          fontWeight: '600'
-                        }
-                    })}
-                />
+               
                 <Stack.Screen 
                     name="Search" 
                     component={Search} 

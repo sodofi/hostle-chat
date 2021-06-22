@@ -1,11 +1,9 @@
 import React from 'react';
 import {Image} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../screens/Home'
-//import Search from '../screens/Search'
-import Camera from '../screens/Camera'
-//import Inbox from '../screens/Inbox'
-import Profile from '../screens/Profile'
+import HomeStack from './homeStack'
+import CameraStack from './cameraStack'
+import ProfileStack from './profileStack'
 
 import Entypo from 'react-native-vector-icons/Entypo'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -27,11 +25,12 @@ const HomeBottomTabNavigator = () => {
             }}>
             <Tab.Screen 
                 name={'Home'} 
-                component={Home} 
+                component={HomeStack} 
                 options={{
                     tabBarIcon: () => (
                         <Entypo name={'home'} size={24} />
                     )
+                    
                 }}
             />
             {/* <Tab.Screen 
@@ -45,7 +44,7 @@ const HomeBottomTabNavigator = () => {
             /> */}
             <Tab.Screen 
                 name={'Camera'} 
-                component={Camera} 
+                component={CameraStack} 
                 options={{
                     tabBarIcon: ({}) => (
                         <AntDesign name={'search1'} size={24} />
@@ -63,7 +62,7 @@ const HomeBottomTabNavigator = () => {
             /> */}
             <Tab.Screen 
                 name={'Profile'} 
-                component={Profile}
+                component={ProfileStack}
                 options={{
                     tabBarIcon: () => (
                         <Ionicons name={'person-outline'} size={24} />
