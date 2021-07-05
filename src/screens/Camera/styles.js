@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     // },
     //used
     capture: {
-      backgroundColor: "#FE2C55",
+      backgroundColor: "#fff",
       borderRadius: 5,
       height: captureSize,
       width: captureSize,
@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     //used
     container: {
       ...StyleSheet.absoluteFillObject,
+      
     },
     //used
     control: {
@@ -131,20 +132,23 @@ const styles = StyleSheet.create({
       borderRadius: 3,
       height: 6,
       width: 6,
-      backgroundColor: "#ff0000",
+      backgroundColor: "#fff",
       marginHorizontal: 5,
     },
     //used
     sideBar:{
       //backgroundColor: 'rgba(0,0,0,.25)',
-      borderRadius: WINDOW_HEIGHT/10,
-      paddingVertical: WINDOW_HEIGHT/50,
-      paddingHorizontal: WINDOW_WIDTH/100,
+      //borderRadius: WINDOW_HEIGHT/10,
+      paddingTop: WINDOW_HEIGHT/10,
+      paddingHorizontal: WINDOW_WIDTH/10,
       alignItems: "center",
-      position: "absolute",
-      right: WINDOW_WIDTH/30,
-      top: WINDOW_HEIGHT/50,
-      zIndex: 1
+      //position: "absolute",
+      //right: WINDOW_WIDTH/30,
+      //top: WINDOW_HEIGHT/50,
+      //zIndex: 1,
+      flexDirection: 'row',
+      width: '100%',
+      justifyContent: 'space-between'
     },
     //used
     text: {
@@ -153,6 +157,15 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       color: "#fff",
     },
+    videoContainer: {
+      ...StyleSheet.absoluteFillObject,
+      borderBottomWidth: (WINDOW_HEIGHT - WINDOW_WIDTH)/3,
+      borderTopWidth: (WINDOW_HEIGHT - WINDOW_WIDTH)/3,
+      //marginVertical: -10,
+      borderColor: 'rgba(0, 0, 0, .2)',
+      //height: '100%',
+     // width: '100%'
+    }
   });
 
 export default styles;

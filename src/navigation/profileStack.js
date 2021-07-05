@@ -26,22 +26,7 @@ const RootNavigation = () => {
                      />
                         
                         
-                <Stack.Screen 
-                    name="CreatePost" 
-                    component={CreatePost} 
-                    options={({navigation, route}) => ({
-                        headerLeft: () => (
-                            <TouchableOpacity onPress={() => navigation.pop()}>
-                                <Ionicons name={'chevron-back'} size={25} color={'black'} />
-                            </TouchableOpacity>
-                        ),
-                        title: "Post",
-                        headerTitleStyle: {
-                          fontSize: 16,
-                          fontWeight: '600'
-                        }
-                    })}
-                />
+                
                 <Stack.Screen 
                     name="EditProfile" 
                     component={EditProfile} 
@@ -58,38 +43,7 @@ const RootNavigation = () => {
                         }
                     })}
                 />
-                <Stack.Screen 
-                    name="Activity" 
-                    component={Activity} 
-                    options={({navigation, route}) => ({
-                        headerLeft: () => (
-                            <TouchableOpacity onPress={() => navigation.pop()}>
-                                <Ionicons name={'chevron-back'} size={25} color={'black'} />
-                            </TouchableOpacity>
-                        ),
-                        title: "Activity",
-                        headerTitleStyle: {
-                          fontSize: 16,
-                          fontWeight: '600'
-                        }
-                    })}
-                />
-                <Stack.Screen 
-                    name="Search" 
-                    component={Search} 
-                    options={({navigation, route}) => ({
-                        headerLeft: () => (
-                            <TouchableOpacity onPress={() => navigation.pop()}>
-                                <Ionicons name={'chevron-back'} size={25} color={'black'} />
-                            </TouchableOpacity>
-                        ),
-                        title: "Search",
-                        headerTitleStyle: {
-                          fontSize: 16,
-                          fontWeight: '600'
-                        }
-                    })}
-                />
+                
                 
             </Stack.Navigator>
     )

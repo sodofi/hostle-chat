@@ -6,7 +6,7 @@ import styles from './styles'
 
 const { width } = Dimensions.get('window');
 
-const Inbox = () => {
+const Activity = () => {
     return(
         <View style={styles.container}>
             <View style={styles.activityContainer}>
@@ -39,4 +39,4 @@ const Inbox = () => {
     )
 }
 
-export default Inbox;
+export default Activity;

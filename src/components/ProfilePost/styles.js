@@ -1,6 +1,6 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
-const ITEM_HEIGHT = Dimensions.get('window').height-130
+const ITEM_HEIGHT = 180
 const WIDTH = Dimensions.get('window').width
 
 const styles = StyleSheet.create({
@@ -11,8 +11,9 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
     },
     container: {
-        width: WIDTH/3,
-        height: ITEM_HEIGHT/3,
+        //alignItems: "center",
+        width: ITEM_HEIGHT + 15,
+        height: ITEM_HEIGHT + 15,
     },
     description: {
         color: '#fff',
@@ -81,6 +82,9 @@ const styles = StyleSheet.create({
         left: 0,
         bottom: 0,
         right: 0,
+        width: ITEM_HEIGHT,
+        height: ITEM_HEIGHT,
+        borderRadius: 20,
     },
     videoPlayButton: {
         position: 'absolute',

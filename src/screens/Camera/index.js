@@ -139,7 +139,7 @@ export default function VideoScreen() {
     <Video
       source={{ uri: videoSource }}
       shouldPlay={true}
-      style={styles.media}
+      style={styles.videoContainer}
       isLooping
     />
   );
@@ -149,7 +149,6 @@ export default function VideoScreen() {
   const renderVideoRecordIndicator = () => (
     <View style={styles.recordIndicatorContainer}>
       <View style={styles.recordDot} />
-      <Text style={styles.recordTitle}>{"Recording..."}</Text>
     </View>
   );
 
@@ -157,6 +156,10 @@ export default function VideoScreen() {
   const renderCaptureControl = () => (
     <View style={{flex: 1}}>
         <View style={styles.sideBar} >
+          <TouchableOpacity disabled={!isCameraReady} onPress={switchCamera}>
+            <Ionicons name={'flash-outline'} size={closeButtonSize} color={'white'} />
+            <Text style={styles.text}>Flash</Text>
+          </TouchableOpacity>
           <TouchableOpacity disabled={!isCameraReady} onPress={switchCamera}>
             <Ionicons name={'md-camera-reverse-outline'} size={closeButtonSize} color={'white'} />
             <Text style={styles.text}>Flip</Text>
@@ -190,7 +193,7 @@ export default function VideoScreen() {
     <SafeAreaView style={styles.container}>
       <Camera
         ref={cameraRef}
-        style={styles.container}
+        style={styles.videoContainer}
         type={cameraType}
         flashMode={Camera.Constants.FlashMode.on}
         onCameraReady={onCameraReady}
@@ -198,12 +201,20 @@ export default function VideoScreen() {
           console.log("cammera error", error);
         }}
       />
-      <View style={styles.container}>
-        {isVideoRecording && renderVideoRecordIndicator()}
+
+       
+
+
+      <View style={styles.videoContainer}>
+        {isVideoRecording && renderVideoRecordIndicator()} 
         {videoSource && renderVideoPlayer()}
         {isPreview && renderCancelPreviewButton()}
+      </View>
+
+      <View style={styles.container}>
         {!videoSource && !isPreview && renderCaptureControl()}
       </View>
+
     </SafeAreaView>
   );
 }

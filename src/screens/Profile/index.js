@@ -2,13 +2,14 @@ import React, {useEffect, useState, useCallback} from 'react';
 import {View, FlatList, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native'
-//import headshot from '../../assets/headshot.jpeg'
+import headshot from '../../assets/headshot.jpeg'
 import styles from './styles'
 
 import { useIsFocused } from "@react-navigation/native";
 
 import ProfilePost from '../../components/ProfilePost';
 import data from '../../../data/slides'
+import { color } from 'react-native-reanimated';
 
 //import { Auth, API, graphqlOperation} from 'aws-amplify';
 
@@ -67,57 +68,45 @@ const Profile = () => {
     );
     return(
         <View style={styles.container}>
-
             <View style={styles.topContainer}>
-                <Image style={styles.image} source={{uri: profilePic}}/>
-                {/* <Image style={styles.image} source={headshot}/> */}
-                <Text style={styles.usernameText}>@{username}</Text>
+                {/* <Image style={styles.image} source={{uri: profilePic}}/> */}
+                <Image style={styles.image} source={headshot}/>
+                {/* <Text style={styles.usernameText}>@{username}</Text> */}
+                <View style={styles.topRightContainer}>
+                    <Text style={styles.numberText}>Sophia Dew</Text>
+                    <Text style={styles.usernameText}>@sophiadew</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("EditProfile")}>
+                        <Text style={{color: 'white', fontWeight: '600', fontSize: 14}}>Edit</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+                
 
                 <View style={styles.middleContainer}>
                     <View style={styles.middleTextContainer}>
-                        <Text style={styles.numberText}>100</Text>
+                        <Text style={styles.numberText}>130</Text>
+                        <Text style={styles.middleText}>   Slides   </Text>
+                    </View>
+                    <View style={styles.middleTextContainer}>
+                        <Text style={styles.numberText}>872K</Text>
                         <Text style={styles.middleText}>Followers</Text>
                     </View>
                     <View style={styles.middleTextContainer}>
-                        <Text style={styles.numberText}>8761</Text>
-                        <Text style={styles.middleText}>Following</Text>
-                    </View>
-                    <View style={styles.middleTextContainer}>
-                        <Text style={styles.numberText}>150K</Text> 
-                        <Text style={styles.middleText}>Likes</Text> 
+                        <Text style={styles.numberText}>40</Text> 
+                        <Text style={styles.middleText}>Following</Text> 
                     </View>
                 </View>
-
-                <View style={styles.middleContainer}>
-                    <TouchableOpacity style={styles.border} onPress={() => navigation.navigate("EditProfile")}>
-                        <Text>     Edit profile     </Text>
-                    </TouchableOpacity>
-                    <View style={styles.border}>
-                        <Ionicons name={'bookmark-outline'} size={20} color={'black'} />
-                    </View>
-                </View>
-
-                <Text style={styles.bio}>Welcome to my fake profile made on a TikTok clone! </Text>  
-            </View>
-
-            <View style={styles.line}/>
-                <View style={{marginVertical: 10, justifyContent: 'space-between', flexDirection: 'row'}}>
-                    <Ionicons name={'md-apps'} style={styles.icon} size={20} color={'black'} />
-                    <Ionicons name={'heart-outline'} style={styles.icon} size={20} color={'gray'} />
-                    <Ionicons name={'ios-lock-closed-outline'} style={styles.icon} size={20} color={'gray'} />
-                </View>
-                
-
-            <View style={styles.line}/>
+            {/* </View> */}
 
             <FlatList
-                contentContainerStyle={{margin:4}}  
+                contentContainerStyle={{margin:20}}  
                 data={posts}
                 renderItem={renderItem}
                 keyExtractor={keyExtractor}
                 horizontal={false}
-                numColumns={3}
+                numColumns={2}
                 maxToRenderPerBatch={3}
+                
             />
         </View>
         

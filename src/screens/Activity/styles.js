@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
     postImage: {
         width: 45,
         height: 55,
-        
         //justifyContent:'flex-end'
         //alignContent: 'flex-end'
     },

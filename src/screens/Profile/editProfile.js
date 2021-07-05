@@ -103,7 +103,7 @@ const Profile = () => {
         <SafeAreaView style={styles.container}>
 
             {/* Photo */}
-            <TouchableOpacity style={styles.topContainer} onPress={openImagePickerAsync}>
+            <TouchableOpacity style={styles.centerContainer} onPress={openImagePickerAsync}>
                 <ImageBackground style={styles.image} imageStyle={{borderRadius: 100}} source={{uri: profilePic}}> 
                     <View style={styles.overlay}>
                         <Ionicons name={'camera-outline'} size={40} color={'white'} />
@@ -146,7 +146,7 @@ const Profile = () => {
                         <Text style={styles.saveButtonText}>Save Changes</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.topContainer} onPress={signOut}>
+                <TouchableOpacity style={styles.centerContainer} onPress={signOut}>
                     <Text style={{color: '#000', fontWeight: '500'}}>Logout</Text>
                 </TouchableOpacity>
                 

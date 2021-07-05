@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeStack from './homeStack'
 import CameraStack from './cameraStack'
 import ProfileStack from './profileStack'
+import Post from '../assets/post.png'
 
 import Entypo from 'react-native-vector-icons/Entypo'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -19,16 +20,16 @@ const HomeBottomTabNavigator = () => {
         <Tab.Navigator 
             tabBarOptions={{
                 tabStyle: {
-                    backgroundColor: '#000'
+                    backgroundColor: '#fff'
                 },
-                activeTintColor: "#fff",
+                showLabel: false,
             }}>
             <Tab.Screen 
                 name={'Home'} 
                 component={HomeStack} 
                 options={{
-                    tabBarIcon: () => (
-                        <Entypo name={'home'} size={24} />
+                    tabBarIcon: ({focused}) => (
+                        <Ionicons name={focused? 'home' : 'home-outline'} size={24} />
                     )
                     
                 }}
@@ -47,7 +48,7 @@ const HomeBottomTabNavigator = () => {
                 component={CameraStack} 
                 options={{
                     tabBarIcon: ({}) => (
-                        <AntDesign name={'search1'} size={24} />
+                        <Image source={Post} style={{width: 40, height: 40}} />
                     )
                 }}
             />
@@ -64,8 +65,8 @@ const HomeBottomTabNavigator = () => {
                 name={'Profile'} 
                 component={ProfileStack}
                 options={{
-                    tabBarIcon: () => (
-                        <Ionicons name={'person-outline'} size={24} />
+                    tabBarIcon: ({focused}) => (
+                        <Ionicons name={focused? 'person' : 'person-outline'} size={24} />
                     )
                 }}
             />

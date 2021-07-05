@@ -1,19 +1,23 @@
 import { StyleSheet, Dimensions } from 'react-native';
 const  WIDTH  = Dimensions.get('window').width;
+const IMAGE_SIZE = 100;
 
 const styles = StyleSheet.create({
-    bio: {
-        textAlign: 'center',
-        margin: 20,
-        width: 250,
-    },  
-    border: {
-        borderWidth: 1,
-        borderRadius: 2,
-        borderColor: '#E4E4E6',
+    
+    button: {
+        borderRadius: 100,
+        backgroundColor: '#30A6A6',
+        marginTop: 10,
+        height: 30,
+        width: 100,
         alignItems: 'center',
-        padding: 10,
-        marginHorizontal: 2,
+        justifyContent: 'center'
+    },
+    centerContainer: {
+        paddingTop: 20, 
+        alignContent: 'center', 
+        width: '100%', 
+        alignItems: 'center'
     },
     container: {
         flex: 1,
@@ -31,7 +35,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 40,
     },
     image: {
-        marginTop: 50,
+        //marginTop: 50,
         borderRadius: 100,
         width: 100,
         height: 100,
@@ -42,21 +46,26 @@ const styles = StyleSheet.create({
         borderBottomColor: '#E4E4E6'
     },
     middleContainer: {
-        flexDirection: 'row'
+        width: '100%',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        //paddingRight: 10,
+        paddingHorizontal: 50
     },
     middleTextContainer: {
         alignItems: 'center',
-        padding: 10,
+        //paddingHorizontal: 40,
+        paddingBottom: 10,
     },
     middleText: {
-        fontWeight: "normal",
-        fontSize: 12,
-        color: 'gray',
+        fontWeight: "600",
+        fontSize: 14,
+        color: '#c4c4c4',
         paddingVertical: 5
     },
     numberText: {
         fontWeight: '800',
-        fontSize: 16
+        fontSize: 22
     },
     overlay: {
         alignItems: 'center',
@@ -70,7 +79,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(52, 52, 52, 0.3)',
     },
     saveButton: {
-        backgroundColor: '#fe2c55',
+        backgroundColor: '#30A6A6',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 3,
@@ -78,7 +87,7 @@ const styles = StyleSheet.create({
         height: 50,
     },
     saveButtonDisabled: {
-        backgroundColor: '#ff95a9',
+        backgroundColor: '#EAF6F6',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 3,
@@ -95,13 +104,23 @@ const styles = StyleSheet.create({
         paddingRight: 10,
     },
     topContainer: {
-        alignItems: 'center'
+        alignItems: 'center',
+        flexDirection: 'row',
+        paddingHorizontal: 50,
+        paddingVertical: 20
+    },
+    topRightContainer: {
+        justifyContent: 'space-between',
+        paddingLeft: 20,
+        height: IMAGE_SIZE - 10
+
     },
     usernameText: {
-        padding: 10,
-        borderRadius: 5,
-        fontSize: 16,
-        fontWeight: '600',
+        //padding: 10,
+        //borderRadius: 5,
+        fontSize: 18,
+        color: '#c4c4c4',
+        fontWeight: '700',
         flexDirection: 'row',
     }
 });
