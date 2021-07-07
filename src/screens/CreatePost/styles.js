@@ -1,10 +1,11 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+const WINDOW_WIDTH = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
   
   
   button: {
-    backgroundColor: '#fe2c55',
+    backgroundColor: '#30A6A6',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 3,
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
     height: 50,
   },
   buttonDisabled: {
-    backgroundColor: '#ff95a9',
+    backgroundColor: '#97D3D3',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 3,
@@ -27,39 +28,33 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    backgroundColor: 'white'
+    //justifyContent: 'space-between',
+    justifyContent: 'flex-end',
+    backgroundColor: 'white',
   },
-  containerTop: {
-    //flex: 1,
-    top: 0,
-    //position: "absolute",
-    padding: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    //backgroundColor: 'red',
-    alignItems: 'flex-start',
-    borderBottomColor: '#E4E4E6',
+  line: {
+    width: '100%',
     borderBottomWidth: 1,
-  },
-  settingsContainer: {
-    margin: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+    borderBottomColor: '#E4E4E6'
   },
   textInput: {
-    //margin: 10,
-    //paddingBottom: 80,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     //height:50,
     //alignSelf: 'flex-start',
     //backgroundColor: 'brown',
     color: 'black',
-    fontSize: 15,
+    fontSize: 16,
+    fontWeight: '600'
   },
   video: {
-    width: 80,
-    height: 150,
-    resizeMode: 'stretch'
+    width: WINDOW_WIDTH - 40,
+    height: WINDOW_WIDTH - 40,
+    alignSelf: 'center',
+    marginTop: 20,
+    marginBottom: 10,
+    borderRadius: 20,
+    //resizeMode: 'stretch'
   }
 
 });

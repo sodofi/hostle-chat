@@ -6,6 +6,11 @@ import 'react-native-gesture-handler'
 import TabNavigation from './src/navigation/homeBottomTabNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 
+import Amplify from 'aws-amplify'
+import config from './src/aws-exports'
+//import config from './aws-exports'
+Amplify.configure(config)
+
 export default function App() {
   return (
     // <View style={styles.container}>
@@ -18,7 +23,7 @@ export default function App() {
       {/* <Text>Open up App.js to start working on your app!</Text>
       <AntDesign name={'stepforward'} size={30} />
       <StatusBar style="auto" /> */}
-      <StatusBar style="light" /> 
+      <StatusBar hidden='false' translucent='true' style="light" backgroundColor='blue' /> 
       <NavigationContainer>
         <TabNavigation/>
       </NavigationContainer>

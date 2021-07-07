@@ -1,6 +1,6 @@
 
 import React, {useEffect, useRef, useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity, ActivityIndicator, Switch} from 'react-native';
+import {View, Text, Keyboard, TextInput, TouchableOpacity, ActivityIndicator, Switch, KeyboardAvoidingView, TouchableWithoutFeedback} from 'react-native';
 import {v4 as uuidv4} from 'uuid';
 import { Audio, Video } from 'expo-av';
 
@@ -104,35 +104,57 @@ const CreatePost = () => {
 
 
   return (
-    <View style={styles.container}>
-      {/* video post */}
-      <View>
-      <View style={styles.containerTop}>
-        <TextInput
+    <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+
+      
+      <View style={styles.container}>
+      {/* video preview */}
+      <Video
+        source={{uri: route.params.videoUri}}
+        style={styles.video}
+        onError={(e) => console.log(e)}
+        isLooping = {true}
+        shouldPlay={false}
+        resizeMode={'cover'}
+      />
+
+    
+      <View style={[styles.line, {paddingTop: 20}]}/>
+
+      <TextInput
           value={description}
           onChangeText={setDescription}
           numberOfLines={5}
-          placeholder={'Describe your video'}
+          placeholder={'Slide Title (Required)'}
           style={styles.textInput}
-        />
-        <Video
-          source={{uri: route.params.videoUri}}
-          style={styles.video}
-          onError={(e) => console.log(e)}
-          isLooping = {true}
-          shouldPlay={false}
-        />
-      </View>
+      />
 
-        {/* permissions */}
-        <SettingButton icon='lock-closed-outline' text='Make private' />
-        <SettingButton icon='chatbox-outline' text='Disable comments' />
-        <SettingButton icon='download-outline' text='Save to device' />
+      <View style={styles.line}/>
 
-      </View>
+      <TextInput
+          value={description}
+          onChangeText={setDescription}
+          numberOfLines={5}
+          placeholder={'Location'}
+          style={styles.textInput}
+      />
+
+      <View style={styles.line}/>
+
+      <TextInput
+          value={description}
+          onChangeText={setDescription}
+          numberOfLines={5}
+          placeholder={'Description'}
+          style={[styles.textInput, {paddingBottom: 50}]}
+      />
+
+      <View style={styles.line}/>
+      
 
       {/* publish button */}
-      <TouchableOpacity onPress={onPublish}>
+      <TouchableOpacity style={{marginBottom: 50}}onPress={onPublish}>
         <View style={videoKey ? styles.button : styles.buttonDisabled}>
           {videoKey ? <Text style={styles.buttonText}>Post</Text> : <ActivityIndicator size="small" color="white"/>}
           {/* <Text style={styles.buttonText}>
@@ -145,8 +167,9 @@ const CreatePost = () => {
           <Text style={styles.buttonText}>Publish</Text>
         </View>
       </TouchableOpacity> */}
-
-    </View>
+      </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -3,61 +3,31 @@ import {StyleSheet, Dimensions} from 'react-native';
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 const WINDOW_WIDTH = Dimensions.get("window").width;
 const closeButtonSize = Math.floor(WINDOW_HEIGHT * 0.052);
-const captureSize = Math.floor(WINDOW_HEIGHT * 0.09);
+const captureSize = Math.floor(WINDOW_HEIGHT * 0.1);
 
 const styles = StyleSheet.create({
-    // buttonContainer: {
-    //   flex: 1,
-    //   backgroundColor: 'transparent',
-    //   flexDirection: 'row',
-    //   margin: 20,
-    // },
-    // buttonRecord: {
-    //   height: 50,
-    //   width: 50,
-    //   borderRadius: 25,
-    //   marginVertical: 10,
-    //   backgroundColor: 'red',
-    //   alignSelf: 'center',
-    // },
-    // buttonStop: {
-    //     height: 35,
-    //     width: 35,
-    //     borderRadius: 3,
-    //     marginVertical: 10,
-    //     backgroundColor: '#ff4343',
-    //     alignSelf: 'center',
-    // },
-    // camera: {
-    //   flex: 1,
-    // },
     //used
     capture: {
-      backgroundColor: "#fff",
+      backgroundColor: "#e4e4e4",
       borderRadius: 5,
+      borderWidth: 3,
       height: captureSize,
       width: captureSize,
       borderRadius: Math.floor(captureSize / 2),
-      marginHorizontal: 31,
     },
     //used
     closeButton: {
-      position: "absolute",
+      //position: "absolute",
       top: 35,
-      left: 15,
+      //left: 15,
       height: closeButtonSize,
       width: closeButtonSize,
-      borderRadius: Math.floor(closeButtonSize / 2),
+      //borderRadius: Math.floor(closeButtonSize / 2),
       justifyContent: "center",
       alignItems: "center",
+      //backgroundColor: 'red',
       zIndex: 2,
     },
-    // closeCross: {
-    //   width: "68%",
-    //   height: 1,
-    //   backgroundColor: "black",
-    // },
-    //used
     container: {
       ...StyleSheet.absoluteFillObject,
       
@@ -77,21 +47,21 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 3,
-      backgroundColor: '#FE2C55'
+      backgroundColor: '#30A6A6'
     },
     //used
     createPostButtonContainer: {
       //position: "absolute",
       //top: 135,
-      //right: 15,
-      height:  Dimensions.get("window").height-150,
+      right: 15,
+      height:  Dimensions.get("window").height-200,
       //width: closeButtonSize,
       //backgroundColor: 'red',
       //borderRadius: Math.floor(closeButtonSize / 2),
       justifyContent: 'flex-end',
       //flex: 2,
       alignItems: 'flex-end',
-      zIndex: 2,
+      zIndex: 1,
     },
     createPostButtonText: {
       color: 'white',
@@ -99,10 +69,23 @@ const styles = StyleSheet.create({
     },
     //used
     media: {
+      //...StyleSheet.absoluteFillObject,
+      height: WINDOW_WIDTH - 15,
+      width: WINDOW_WIDTH - 15,
+      borderRadius: 20,
+      //paddingBottom: 100,
+      //backgroundColor: 'black',
+    },
+    previewContainer: {
       ...StyleSheet.absoluteFillObject,
-      height: Dimensions.get("window").height-130,
-      paddingBottom: 100,
-      backgroundColor: 'black',
+      backgroundColor: 'white',
+      //borderBottomWidth: (WINDOW_HEIGHT - WINDOW_WIDTH)/3,
+      //zIndex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      //borderTopWidth: (WINDOW_HEIGHT - WINDOW_WIDTH)/3,
+      //marginVertical: -10,
+      borderColor: 'rgba(0, 0, 0, .2)',
     },
     // preview: {
     //   flex: 1,
@@ -118,7 +101,7 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       alignItems: "center",
       backgroundColor: "transparent",
-      opacity: 0.7,
+      opacity: 0.7
     },
     //used
     recordTitle: {
@@ -129,10 +112,10 @@ const styles = StyleSheet.create({
     },
     //used
     recordDot: {
-      borderRadius: 3,
-      height: 6,
-      width: 6,
-      backgroundColor: "#fff",
+      borderRadius: 10,
+      height: 7,
+      width: 7,
+      backgroundColor: "#fe2c55",
       marginHorizontal: 5,
     },
     //used
@@ -155,16 +138,26 @@ const styles = StyleSheet.create({
       fontSize: 12,
       fontWeight: "600",
       textAlign: 'center',
-      color: "#fff",
+      color: "#000",
+    },
+    video: {
+      //height: WINDOW_HEIGHT - 90,
+      //borderWidth: 100,
+      //borderRightWidth: 30,
+      //...StyleSheet.absoluteFillObject,
+      //borderBottomWidth: (WINDOW_HEIGHT - WINDOW_WIDTH)/3,
+      //borderTopWidth: (WINDOW_HEIGHT - WINDOW_WIDTH)/3,
+      //marginVertical: -10,
+      //borderColor: 'rgba(0, 0, 0, .2)',
+      //borderRadius: 20,
+      height: WINDOW_WIDTH - 15,
+      width: WINDOW_WIDTH - 15,
     },
     videoContainer: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: 'white',
       ...StyleSheet.absoluteFillObject,
-      borderBottomWidth: (WINDOW_HEIGHT - WINDOW_WIDTH)/3,
-      borderTopWidth: (WINDOW_HEIGHT - WINDOW_WIDTH)/3,
-      //marginVertical: -10,
-      borderColor: 'rgba(0, 0, 0, .2)',
-      //height: '100%',
-     // width: '100%'
     }
   });
 

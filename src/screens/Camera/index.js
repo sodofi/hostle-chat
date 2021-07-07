@@ -9,6 +9,7 @@ import {
   Button,
 } from "react-native";
 
+import ProgressCircle from 'react-native-progress-circle'
 import * as ImagePicker from "expo-image-picker";
 import styles from './styles';
 import { Camera } from "expo-camera";
@@ -28,6 +29,7 @@ export default function VideoScreen() {
   const [isCameraReady, setIsCameraReady] = useState(false);
   const [isVideoRecording, setIsVideoRecording] = useState(false);
   const [videoSource, setVideoSource] = useState(null);
+  const [videoLength, setVideoLength] = useState(0); 
   const cameraRef = useRef();
 
   const navigation = useNavigation();
@@ -38,6 +40,7 @@ export default function VideoScreen() {
       setHasPermission(status === "granted");
     })();
   }, []);
+
   const onCameraReady = () => {
     setIsCameraReady(true);
   };
@@ -90,6 +93,7 @@ export default function VideoScreen() {
       setIsPreview(false);
       setIsVideoRecording(false);
       cameraRef.current.stopRecording();
+      //navigation.navigate("CreatePost", {videoUri: videoSource})
     }
   };
 
@@ -107,6 +111,7 @@ export default function VideoScreen() {
 
   //function to cancel preview
   const cancelPreview = async () => {
+    console.log('touched')
     await cameraRef.current.resumePreview();
     setIsPreview(false);
     setVideoSource(null);
@@ -124,24 +129,27 @@ export default function VideoScreen() {
   const renderCancelPreviewButton = () => (
     <View>
     <TouchableOpacity onPress={cancelPreview} style={styles.closeButton}>
-      <Ionicons name={'chevron-back'} size={closeButtonSize} color={'white'} />
+      <Ionicons name={'chevron-back'} size={closeButtonSize} color={'black'} />
     </TouchableOpacity>
-    <TouchableOpacity onPress={createPost} style={styles.createPostButtonContainer}>
-      <View style={styles.createPostButton}>
+    <View  style={styles.createPostButtonContainer}>
+      <TouchableOpacity onPress={createPost} style={styles.createPostButton}>
         <Text style={styles.createPostButtonText}>Next</Text>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   </View>
   );
 
   //function plays the recorded video
   const renderVideoPlayer = () => (
-    <Video
-      source={{ uri: videoSource }}
-      shouldPlay={true}
-      style={styles.videoContainer}
-      isLooping
-    />
+    <View style={styles.previewContainer}>
+      <Video
+        source={{ uri: videoSource }}
+        shouldPlay={true}
+        style={styles.media}
+        isLooping
+        resizeMode={'cover'}
+      />
+    </View>
   );
 
 
@@ -157,19 +165,30 @@ export default function VideoScreen() {
     <View style={{flex: 1}}>
         <View style={styles.sideBar} >
           <TouchableOpacity disabled={!isCameraReady} onPress={switchCamera}>
-            <Ionicons name={'flash-outline'} size={closeButtonSize} color={'white'} />
+            <Ionicons name={'flash-outline'} size={closeButtonSize} color={'black'} />
             <Text style={styles.text}>Flash</Text>
           </TouchableOpacity>
           <TouchableOpacity disabled={!isCameraReady} onPress={switchCamera}>
-            <Ionicons name={'md-camera-reverse-outline'} size={closeButtonSize} color={'white'} />
+            <Ionicons name={'md-camera-reverse-outline'} size={closeButtonSize} color={'black'} />
             <Text style={styles.text}>Flip</Text>
           </TouchableOpacity>
           <TouchableOpacity disabled={!isCameraReady} onPress={openImagePickerAsync}>
-            <Ionicons style={{paddingTop: 10, alignSelf: 'center'}} name={'share-outline'} size={closeButtonSize} color={'white'} />
+            <Ionicons style={{paddingTop: 10, alignSelf: 'center'}} name={'share-outline'} size={closeButtonSize} color={'black'} />
             <Text style={styles.text}>Upload</Text>
           </TouchableOpacity>
         </View>
       <View style={styles.control} >
+
+          {/* <ProgressCircle
+              style={{position: "absolute"}}
+              percent={videoLength}
+              radius={captureSize/2+captureSize/10}
+              borderWidth={captureSize/10}
+              color='#DC83F2'
+              shadowColor="white"
+              bgColor= "white" 
+          >
+          </ProgressCircle> */}
           <TouchableOpacity
             activeOpacity={0.7}
             disabled={!isCameraReady}
@@ -191,9 +210,10 @@ export default function VideoScreen() {
   }
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.videoContainer}>
       <Camera
         ref={cameraRef}
-        style={styles.videoContainer}
+        style={styles.video}
         type={cameraType}
         flashMode={Camera.Constants.FlashMode.on}
         onCameraReady={onCameraReady}
@@ -201,18 +221,20 @@ export default function VideoScreen() {
           console.log("cammera error", error);
         }}
       />
+      </View>
 
        
 
 
-      <View style={styles.videoContainer}>
+      <View style={{flex: 1}}>
         {isVideoRecording && renderVideoRecordIndicator()} 
-        {videoSource && renderVideoPlayer()}
-        {isPreview && renderCancelPreviewButton()}
       </View>
 
       <View style={styles.container}>
         {!videoSource && !isPreview && renderCaptureControl()}
+        {videoSource && renderVideoPlayer()}
+        {isPreview && renderCancelPreviewButton()}
+        
       </View>
 
     </SafeAreaView>
