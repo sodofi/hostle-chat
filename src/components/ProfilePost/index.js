@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Alert, TouchableWithoutFeedback, Image, TouchableOpacity} from 'react-native';
+import {View, Alert, Text, TouchableWithoutFeedback, Image, TouchableOpacity} from 'react-native';
 import { Audio, Video } from 'expo-av';
 import styles from './styles';
 
@@ -76,14 +76,16 @@ const Post = (props) => {
                         //paused={paused}
                         //shouldPlay={(props.currentIndex.current == props.index)}
                     />
+                    
                 
 
-                    <View style={styles.uiContainer}>
-                        
-
+                    <View style={styles.uiContainer}> 
+                        <Text style={styles.header1}>Title of Slide</Text>
+                        <Text style={styles.header2}>8 days ago</Text>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
+            
         </View>
     )
 }

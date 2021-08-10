@@ -1,15 +1,20 @@
 
-import Slide from '../../components/Slide'
+
 
 
 import React, {useEffect, useState, useCallback, useRef, useForceUpdate} from 'react';
 import {View, FlatList, Dimensions, Text, StyleSheet} from 'react-native';
-//import { useIsFocused } from "@react-navigation/native";
 
-//import Amplify from 'aws-amplify'
+//import { useIsFocused } from "@react-navigation/native";
 //import config from '../../aws-exports'
 
+//fake data with video posts
 import posts from '../../../data/slides'
+
+import Slide from '../../components/Slide'
+
+import { API, graphqlOperation } from 'aws-amplify';
+import {listPosts} from '../../graphql/queries';
 
 //Amplify.configure(config)
 
@@ -26,6 +31,7 @@ const Home = () => {
     const renderItem = useCallback(
         ({item, index}) => 
             <Slide post={item} index={index}/>, []
+            //<Text>{item.id}</Text>, []
     );
 
     //creates key for flatlist
@@ -57,6 +63,21 @@ const Home = () => {
     // const viewabilityConfig = {
     //     viewAreaCoveragePercentThreshold: 90
     // }
+
+    useEffect(() => {
+        const fetchPost = async() => {
+            //fetch all the posts
+            try {
+                const response = await API.graphql(graphqlOperation(listPosts));
+                console.log(response);
+                console.log('home line 72')
+                //setPosts(response.data.listPosts.items)
+            } catch (e) {
+                console.error(e);
+            }
+        };
+        fetchPost();
+    }, []);
 
     return (
         <View>

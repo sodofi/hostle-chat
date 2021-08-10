@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, TouchableWithoutFeedback, Image, Alert, TouchableOpacity, Button} from 'react-native';
+import React, {useState, useEffect, useCallback} from 'react';
+import {View, Text, FlatList, Dimensions, TouchableWithoutFeedback, Image, Alert, TouchableOpacity, Button} from 'react-native';
 import { Audio, Video } from 'expo-av';
 import styles from './styles';
 //import {Storage} from 'aws-amplify';
@@ -12,6 +12,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import slideEdit from '../../assets/slide-edit.png'
 //delete later
 import headshot from '../../assets/headshot.jpeg'
+import { ScrollView } from 'react-native-gesture-handler';
+
+const CONTAINER_PADDING = Dimensions.get('window').width * .05
+const VIDEO_SIZE = Dimensions.get('window').width - (CONTAINER_PADDING * 2)
 
 const Slide = (props) => {
     const [post, setPost] = useState(props.post);
@@ -42,7 +46,8 @@ const Slide = (props) => {
     
     useEffect(() => {
         console.log(post)
-        console.log(post.id)
+        console.log(post.videos)
+        console.log('slide post')
         //getVideoUri();
     },[]);
 
@@ -98,6 +103,24 @@ const Slide = (props) => {
             { cancelable: false }
         );
 
+    //optimized renderItem
+    const renderItem = useCallback(
+        ({item, index}) => 
+            <Video
+            source={{uri: item.videoUri}}
+            style={styles.video}
+            onError={(e) => console.log(e)}
+            resizeMode= {'cover'}
+            isLooping = {true}
+            shouldPlay={!paused}
+        />, []
+    );
+
+    //creates key for flatlist
+    const keyExtractor = useCallback(
+        (item) => item.id.toString(),[]
+    );
+
 
     return (
         <View style={styles.container}>
@@ -116,27 +139,47 @@ const Slide = (props) => {
                 </TouchableOpacity>
             </View>
 
-            <TouchableWithoutFeedback style={styles.videoPlayButton}>
-                <View>
-                    <TouchableWithoutFeedback onPress={onPlayPausePress} style={styles.videoContainer}>
+            {/* <TouchableWithoutFeedback style={styles.videoPlayButton}> */}
+            {/* <TouchableWithoutFeedback>
+                <View> */}
+                    {/* <TouchableWithoutFeedback onPress={onPlayPausePress} style={styles.videoContainer}> */}
+                    {/* <TouchableWithoutFeedback> */}
                         <View>
-                            <Video
+                            {/* <Video
                                 source={{uri: post.videoUri}}
                                 style={styles.video}
                                 onError={(e) => console.log(e)}
                                 resizeMode= {'cover'}
                                 isLooping = {true}
                                 shouldPlay={!paused}
+                            /> */}
+
+                            {/* <Text>{post.id}</Text> */}
+                            {/* <ScrollView horizontal> */}
+                            <FlatList
+                                data={post.videos}
+                                renderItem={renderItem}
+                                keyExtractor={keyExtractor}
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={true}
+                                //maxToRenderPerBatch={3}
+                                //viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
+                                //showsVerticalScrollIndicator={true}
+                                snapToInterval={VIDEO_SIZE}
+                                snapToAlignment={'start'}
+                                decelerationRate={'fast'}
                             />
+
+                            {/* </ScrollView> */}
                             
 
-                            <View style={styles.pauseButton}>
+                            {/* <View style={styles.pauseButton}>
                                 <Ionicons name={'caret-forward'} size={80} color={paused ? 'white' : 'transparent'} />
-                            </View>
+                            </View> */}
                         </View>
-                    </TouchableWithoutFeedback>
+                    {/* </TouchableWithoutFeedback>
                 </View>
-            </TouchableWithoutFeedback>
+            </TouchableWithoutFeedback> */}
 
             <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 10}}>
                 <View>

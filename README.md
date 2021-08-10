@@ -19,7 +19,8 @@
 ###### aplify publish --> to deploy everything
 ##### Initialize GraphQL API
 ###### amplify add api --> to create a backend API --> graphQL --> API key --> one-to-many relationship
-###### amplify push --> build all local backend resources and provisions it in the cloud
-###### amplify publish --> build all your local backend and frontend resources
 ##### Edit Schema
 ###### ./amplify/backend/api/schema.graphql
+###### amplify push --> build all local backend resources and provisions it in the cloud
+###### amplify publish --> build all your local backend and frontend resources
+###### amplify console api --> open up console

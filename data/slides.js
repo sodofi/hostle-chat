@@ -13,6 +13,21 @@ export default [
       likes: 123,
       comments: 12,
       shares: 44,
+      videos: [
+        {
+          id: 'v1',
+          videoUri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'
+        },
+        {
+          id: 'v2',
+          videoUri: 'https://influencermarketinghub.com/wiki/wp-content/uploads/2020/08/1657369265111046_c5_720x720.jpeg'
+        },
+        {
+          id: 'v3',
+          videoUri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'
+        }
+      ]
+
     },
   
     {
@@ -29,6 +44,20 @@ export default [
       likes: 123,
       comments: 12,
       shares: 44,
+      videos: [
+        {
+          id: 'v1',
+          videoUri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'
+        },
+        {
+          id: 'v2',
+          videoUri: 'https://influencermarketinghub.com/wiki/wp-content/uploads/2020/08/1657369265111046_c5_720x720.jpeg'
+        },
+        {
+          id: 'v3',
+          videoUri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'
+        }
+      ]
     },
   
     {
@@ -45,6 +74,20 @@ export default [
       likes: 123,
       comments: 12,
       shares: 44,
+      videos: [
+        {
+          id: 'v1',
+          videoUri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'
+        },
+        {
+          id: 'v2',
+          videoUri: 'https://influencermarketinghub.com/wiki/wp-content/uploads/2020/08/1657369265111046_c5_720x720.jpeg'
+        },
+        {
+          id: 'v3',
+          videoUri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'
+        }
+      ]
     },
 
     {
@@ -55,12 +98,26 @@ export default [
         username: 'daviddobrik',
         imageUri: 'https://influencermarketinghub.com/wiki/wp-content/uploads/2020/08/1657369265111046_c5_720x720.jpeg',
       },
-      description: 'hahahah oh boy @borat',
+      description: 'hahahah oh boyyy @borat',
       songName: 'NF - The search',
       songImage: 'https://influencermarketinghub.com/wiki/wp-content/uploads/2020/08/1657369265111046_c5_720x720.jpeg',
       likes: 123,
       comments: 12,
       shares: 44,
+      videos: [
+        {
+          id: 'v1',
+          videoUri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'
+        },
+        {
+          id: 'v2',
+          videoUri: 'https://influencermarketinghub.com/wiki/wp-content/uploads/2020/08/1657369265111046_c5_720x720.jpeg'
+        },
+        {
+          id: 'v3',
+          videoUri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'
+        }
+      ]
     },
     
   ]

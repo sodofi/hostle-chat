@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     container: {
         //alignItems: "center",
         width: ITEM_HEIGHT + 15,
-        height: ITEM_HEIGHT + 15,
+        height: ITEM_HEIGHT + 50,
     },
     description: {
         color: '#fff',
@@ -26,6 +26,18 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '700',
         marginBottom: 10,
+    },
+    header1: {
+        color: '#000',
+        fontSize: 16,
+        fontWeight: '600',
+    },
+    header2:{
+        color: '#c4c4c4',
+        fontSize: 14,
+        fontWeight: '400',
+        paddingBottom: 10,
+
     },
     iconContainer: {
         alignItems: 'center'
@@ -75,6 +87,7 @@ const styles = StyleSheet.create({
     uiContainer: {
         height: '100%',
         justifyContent: 'flex-end',
+        
     },
     video: {
         position: 'absolute',
