@@ -9,6 +9,7 @@ import { useIsFocused } from "@react-navigation/native";
 
 import ProfilePost from '../../components/ProfilePost';
 import data from '../../../data/slides'
+import profile from '../../../data/profile'
 import { color } from 'react-native-reanimated';
 
 //import { Auth, API, graphqlOperation} from 'aws-amplify';

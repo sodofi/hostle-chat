@@ -1,37 +1,28 @@
-
-
-
-
 import React, {useEffect, useState, useCallback, useRef, useForceUpdate} from 'react';
 import {View, FlatList, Dimensions, Text, StyleSheet} from 'react-native';
 
-//import { useIsFocused } from "@react-navigation/native";
-//import config from '../../aws-exports'
-
 //fake data with video posts
+//TODO: delete this line
 import posts from '../../../data/slides'
 
+//slide component
 import Slide from '../../components/Slide'
 
+//backend calls
 import { API, graphqlOperation } from 'aws-amplify';
 import {listPosts} from '../../graphql/queries';
 
-//Amplify.configure(config)
-
-const ITEM_HEIGHT = Dimensions.get('window').height-310;
+const ITEM_HEIGHT = Dimensions.get('window').height-290;
 
 const Home = () => {
 
+    //TODO: uncomment this line
     //const [posts, setPosts] = useState([]);
-    //const [currentIndex, setCurrentIndex] = useState(0);
-    //const currentIndex = useRef(0);
-    //const isFocused = useIsFocused();
 
     //optimized renderItem
     const renderItem = useCallback(
         ({item, index}) => 
             <Slide post={item} index={index}/>, []
-            //<Text>{item.id}</Text>, []
     );
 
     //creates key for flatlist
@@ -48,22 +39,7 @@ const Home = () => {
         }
     }
 
-    //when viewable items change, update current index
-    const onViewableItemsChanged = ({viewableItems}) => {
-        if(viewableItems && viewableItems.length > 0) {
-            const val = viewableItems[0].index;
-            currentIndex.current = val 
-        }
-    }
-
-    // const viewabilityConfigCallbackPairs = useRef(
-    //     [{ viewabilityConfig, onViewableItemsChanged}]
-    // )
-
-    // const viewabilityConfig = {
-    //     viewAreaCoveragePercentThreshold: 90
-    // }
-
+    {/* Called on screen render to fetch posts from backend */}
     useEffect(() => {
         const fetchPost = async() => {
             //fetch all the posts
@@ -71,6 +47,7 @@ const Home = () => {
                 const response = await API.graphql(graphqlOperation(listPosts));
                 console.log(response);
                 console.log('home line 72')
+                //TODO: set posts to
                 //setPosts(response.data.listPosts.items)
             } catch (e) {
                 console.error(e);
@@ -81,15 +58,11 @@ const Home = () => {
 
     return (
         <View>
-            {/* <Text>Hello World</Text> */}
-            {/* <Slide/>
-            <Slide/> */}
             <FlatList
                 data={posts}
                 renderItem={renderItem}
                 keyExtractor={keyExtractor}
                 maxToRenderPerBatch={3}
-                //viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
                 getItemLayout={getItemLayout}
                 showsVerticalScrollIndicator={false}
                 snapToInterval={ITEM_HEIGHT}

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   button: {
-    backgroundColor: '#ff4747',
+    backgroundColor: '#30A6A6',
     alignItems: 'center',
     justifyContent: 'center',
     margin: 10,

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, Alert, Text, TouchableWithoutFeedback, Image, TouchableOpacity} from 'react-native';
-import { Audio, Video } from 'expo-av';
+import {Video } from 'expo-av';
 import styles from './styles';
 
 //import {API, graphqlOperation} from 'aws-amplify'
@@ -17,20 +17,22 @@ const Post = (props) => {
     const [isLiked, setIsLiked] = useState(false);
     const [paused, setPaused] = useState(false);   
     const [isPlaying, setIsPlaying] = useState(true)        
-    const [videoUri, setVideoUri] = useState('');
+    //const [videoUri, setVideoUri] = useState('');
 
-    const getVideoUri = async () => {
-        console.log(post)
-        if (post.videoUri.startsWith('http')) {
-          setVideoUri(post.videoUri);
-          return;
-        }
-        //setVideoUri(await Storage.get(post.videoUri));
-      };
+    // const getVideoUri = async () => {
+    //     console.log(post)
+    //     console.log('profile')
+    //     console.log(post.videos)
+    //     if (post.videos.videoUri.startsWith('http')) {
+    //       setVideoUri(post.videoUri);
+    //       return;
+    //     }
+    //     //setVideoUri(await Storage.get(post.videoUri));
+    //   };
     
-      useEffect(() => {
-        getVideoUri();
-      },[]);
+    //   useEffect(() => {
+    //     getVideoUri();
+    //   },[]);
 
 
     const onPlayPausePress = () => {
@@ -76,13 +78,12 @@ const Post = (props) => {
                         //paused={paused}
                         //shouldPlay={(props.currentIndex.current == props.index)}
                     />
-                    
-                
 
                     <View style={styles.uiContainer}> 
                         <Text style={styles.header1}>Title of Slide</Text>
                         <Text style={styles.header2}>8 days ago</Text>
                     </View>
+
                 </View>
             </TouchableWithoutFeedback>
             

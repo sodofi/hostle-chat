@@ -1,19 +1,21 @@
 import React from 'react';
 import {Image} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+//screens
 import HomeStack from './homeStack'
 import CameraStack from './cameraStack'
 import ProfileStack from './profileStack'
+
+//post button image
 import Post from '../assets/post.png'
 
-import Entypo from 'react-native-vector-icons/Entypo'
-import AntDesign from 'react-native-vector-icons/AntDesign'
+//icons
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-
-//import plusIcon from '../assets/plus-icon.png'
 
 const Tab = createBottomTabNavigator();
+
+{/* Tab navigator for home, camera, and profile stacks */}
 
 const HomeBottomTabNavigator = () => {
     return(
