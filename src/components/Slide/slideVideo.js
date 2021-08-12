@@ -3,13 +3,14 @@ import {View, StyleSheet, Dimensions, TouchableWithoutFeedback } from 'react-nat
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Video } from 'expo-av';
 
-const CONTAINER_PADDING = Dimensions.get('window').width * .05
-const VIDEO_SIZE = Dimensions.get('window').width - (CONTAINER_PADDING * 2)
+//const CONTAINER_PADDING = Dimensions.get('window').width * .05
+//const VIDEO_SIZE = Dimensions.get('window').width - (CONTAINER_PADDING * 2)
 
 const SlideVideo = (props) => {
 
     const [paused, setPaused] = useState(true);
     const [videoUri, setVideoUri] = useState('');
+    const VIDEO_SIZE = props.videoSize;
 
     const getVideoUri = async () => {
         console.log(post)
@@ -34,9 +35,31 @@ const SlideVideo = (props) => {
         console.log(paused)
     };
 
+    const styles = StyleSheet.create({
+        pauseButton: {
+            alignSelf: 'center',
+            position: 'absolute',
+            marginTop: VIDEO_SIZE/2 - 40,
+        }, 
+        video: {
+            width: VIDEO_SIZE,
+            height: VIDEO_SIZE,
+            //borderWidth: 10,
+            borderRadius: 20,
+        },
+        videoContainer: {
+            flex: 1,
+            alignSelf: 'center',
+            justifyContent: 'center',
+            alignContent: 'center',
+            width: VIDEO_SIZE,
+            height: VIDEO_SIZE,
+        },
+    })
+
     return (
         <TouchableWithoutFeedback onPress={onPlayPausePress} style={styles.videoContainer}>
-                <View>
+                <View style={{paddingRight: 20}}>
                     <Video
                         source={{uri: props.videoUri}}
                         style={styles.video}
@@ -54,25 +77,25 @@ const SlideVideo = (props) => {
     )
 }
 
-const styles = StyleSheet.create({
-    pauseButton: {
-        alignSelf: 'center',
-        position: 'absolute',
-        marginTop: VIDEO_SIZE/2 - 40,
-    }, 
-    video: {
-        width: VIDEO_SIZE,
-        height: VIDEO_SIZE,
-        borderRadius: 20,
-    },
-    videoContainer: {
-        flex: 1,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        alignContent: 'center',
-        width: VIDEO_SIZE,
-        height: VIDEO_SIZE,
-    },
-})
+// const styles = StyleSheet.create({
+//     pauseButton: {
+//         alignSelf: 'center',
+//         position: 'absolute',
+//         marginTop: VIDEO_SIZE/2 - 40,
+//     }, 
+//     video: {
+//         width: VIDEO_SIZE,
+//         height: VIDEO_SIZE,
+//         borderRadius: 20,
+//     },
+//     videoContainer: {
+//         flex: 1,
+//         alignSelf: 'center',
+//         justifyContent: 'center',
+//         alignContent: 'center',
+//         width: VIDEO_SIZE,
+//         height: VIDEO_SIZE,
+//     },
+// })
 
 export default SlideVideo;

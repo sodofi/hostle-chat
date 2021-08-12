@@ -5,6 +5,7 @@ import styles from './styles';
 import {Storage} from 'aws-amplify';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import slideEdit from '../../assets/slide-edit.png'
+import { useNavigation } from '@react-navigation/native'
 import headshot from '../../assets/headshot.jpeg'
 
 const CONTAINER_PADDING = Dimensions.get('window').width * .05
@@ -14,6 +15,7 @@ const VIDEO_SIZE = Dimensions.get('window').width - (CONTAINER_PADDING * 2)
 const Slide = (props) => {
     const [post, setPost] = useState(props.post);
     const [isLiked, setIsLiked] = useState(false);
+    const navigation = useNavigation();
     //const [videoUri, setVideoUri] = useState('');
 
 
@@ -77,7 +79,7 @@ const Slide = (props) => {
     const renderItem = useCallback(
         ({item, index}) => 
         //Renders slide video
-        <SlideVideo index={index} videoUri = {item.videoUri} />, []
+        <SlideVideo index={index} videoUri={item.videoUri} videoSize={VIDEO_SIZE}/>, []
     );
 
     //creates key for flatlist
@@ -91,7 +93,7 @@ const Slide = (props) => {
 
             {/* Top handle info */}
             <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingBottom: 10}}>
-                <TouchableOpacity style={{flexDirection: 'row'}}>
+                <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => navigation.navigate("Profile")}>
                     <Image style={styles.profilePicture} source={{uri: post.user.imageUri}}/>
                     <View>
                         <Text style={styles.handleText}>{post.user.username}</Text>

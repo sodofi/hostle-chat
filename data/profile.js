@@ -1,4 +1,4 @@
-export default [
+export default 
     {
         id: 'u1',
         username: 'sophiadew',
@@ -137,4 +137,3 @@ export default [
         
 
     }
-]

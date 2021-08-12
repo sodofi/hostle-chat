@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import Home from '../screens/Home'
 import Activity from '../screens/Activity'
 import Search from '../screens/Search'
+import Profile from '../screens/Profile'
 import CreatePost from '../screens/CreatePost'
 import EditProfile from '../screens/Profile/editProfile'
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -71,6 +72,24 @@ const RootNavigation = () => {
                             </TouchableOpacity>
                         ),
                         title: "Activity",
+                        headerTitleStyle: {
+                          fontSize: 16,
+                          fontWeight: '600'
+                        }
+                    })}
+                />
+
+                {/* Profile */}
+                <Stack.Screen 
+                    name="Profile" 
+                    component={Profile} 
+                    options={({navigation, route}) => ({
+                        headerLeft: () => (
+                            <TouchableOpacity onPress={() => navigation.pop()}>
+                                <Ionicons name={'chevron-back'} size={25} color={'black'} />
+                            </TouchableOpacity>
+                        ),
+                        title: "Profile",
                         headerTitleStyle: {
                           fontSize: 16,
                           fontWeight: '600'

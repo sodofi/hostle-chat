@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {View, FlatList, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, FlatList, Text, Image, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native'
 import headshot from '../../assets/headshot.jpeg'
@@ -9,7 +9,7 @@ import { useIsFocused } from "@react-navigation/native";
 
 import ProfilePost from '../../components/ProfilePost';
 import data from '../../../data/slides'
-import profile from '../../../data/profile'
+import profileData from '../../../data/profile'
 import { color } from 'react-native-reanimated';
 
 //import { Auth, API, graphqlOperation} from 'aws-amplify';
@@ -23,6 +23,7 @@ import { color } from 'react-native-reanimated';
 
 const Profile = () => {
 
+    const [profile, setProfile] = useState(profileData)
     const [posts, setPosts] = useState(data);
     const [username, setUsername] = useState([]);
     const [profilePic, setProfilePic] = useState(null);
@@ -57,10 +58,17 @@ const Profile = () => {
     //     fetchUser();
     // }, [isFocused])
 
+    useEffect(() => {
+        console.log(profile);
+    }, [])
+
     //optimized renderItem
     const renderItem = useCallback(
         ({item, index}) => 
-        <ProfilePost post={item} mode='small' index={index} currentIndex={index}/>, []
+        <TouchableOpacity onLongPress={() => Alert.alert('test')}>
+            <ProfilePost post={item} mode='small' index={index} currentIndex={index}/>
+        </TouchableOpacity>
+        , []
     );
 
     //creates key for flatlist
@@ -69,45 +77,48 @@ const Profile = () => {
     );
     return(
         <View style={styles.container}>
+
+            {/* Top half UI */}
             <View style={styles.topContainer}>
                 {/* <Image style={styles.image} source={{uri: profilePic}}/> */}
-                <Image style={styles.image} source={headshot}/>
+                <Image style={styles.image} source={{uri: profile.imageUri}}/>
                 {/* <Text style={styles.usernameText}>@{username}</Text> */}
                 <View style={styles.topRightContainer}>
-                    <Text style={styles.numberText}>Sophia Dew</Text>
-                    <Text style={styles.usernameText}>@sophiadew</Text>
+                    <Text style={styles.numberText}>{profile.name}</Text>
+                    <Text style={styles.usernameText}>{profile.username}</Text>
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("EditProfile")}>
+                        {/* TODO: if getUser = current authenticated user ? edit : subscribe */}
                         <Text style={{color: 'white', fontWeight: '600', fontSize: 14}}>Edit</Text>
                     </TouchableOpacity>
                 </View>
             </View>
                 
-
-                <View style={styles.middleContainer}>
-                    <View style={styles.middleTextContainer}>
-                        <Text style={styles.numberText}>130</Text>
-                        <Text style={styles.middleText}>   Slides   </Text>
-                    </View>
-                    <View style={styles.middleTextContainer}>
-                        <Text style={styles.numberText}>872K</Text>
-                        <Text style={styles.middleText}>Followers</Text>
-                    </View>
-                    <View style={styles.middleTextContainer}>
-                        <Text style={styles.numberText}>40</Text> 
-                        <Text style={styles.middleText}>Following</Text> 
-                    </View>
+            {/* Middle half UI */}
+            <View style={styles.middleContainer}>
+                <View style={styles.middleTextContainer}>
+                    <Text style={styles.numberText}>{profile.posts.length}</Text>
+                    <Text style={styles.middleText}>   Slides   </Text>
                 </View>
-            {/* </View> */}
+                <View style={styles.middleTextContainer}>
+                    <Text style={styles.numberText}>{profile.followers}</Text>
+                    <Text style={styles.middleText}>Subscribers</Text>
+                </View>
+                <View style={styles.middleTextContainer}>
+                    <Text style={styles.numberText}>{profile.following}</Text> 
+                    <Text style={styles.middleText}>Subscribed</Text> 
+                </View>
+            </View>
 
+            {/* Slides */}
+            {/* TODO: add modal on long press*/}
             <FlatList
                 contentContainerStyle={{margin:20}}  
-                data={posts}
+                data={profile.posts}
                 renderItem={renderItem}
                 keyExtractor={keyExtractor}
                 horizontal={false}
                 numColumns={2}
-                maxToRenderPerBatch={3}
-                
+                maxToRenderPerBatch={3}   
             />
         </View>
         
