@@ -3,6 +3,7 @@ import {View, Text, Image, TextInput, TouchableOpacity, Button} from 'react-nati
 import { createStackNavigator } from '@react-navigation/stack'
 import Camera from '../screens/Camera'
 import CreatePost from '../screens/CreatePost'
+import AddPost from '../screens/CreatePost/add'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import logo from '../assets/logo.png'
 
@@ -20,6 +21,23 @@ const RootNavigation = () => {
                     name="Camera" 
                     component={Camera} 
                     options={{headerShown: false}}
+                />
+
+                <Stack.Screen 
+                    name="AddPost" 
+                    component={AddPost} 
+                    options={({navigation, route}) => ({
+                        headerLeft: () => (
+                            <TouchableOpacity onPress={() => navigation.pop()}>
+                                <Ionicons name={'chevron-back'} size={25} color={'black'} />
+                            </TouchableOpacity>
+                        ),
+                        title: "Post",
+                        headerTitleStyle: {
+                          fontSize: 16,
+                          fontWeight: '600'
+                        }
+                    })}
                 />
                         
                         

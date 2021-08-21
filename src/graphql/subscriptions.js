@@ -9,18 +9,73 @@ export const onCreateUser = /* GraphQL */ `
       username
       email
       imageUri
-      followers
-      following
+      followers {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      following {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       posts {
         items {
           id
-          videoUri
           title
           location
           description
           userID
-          slides
-          likes
           createdAt
           updatedAt
         }
@@ -39,18 +94,73 @@ export const onUpdateUser = /* GraphQL */ `
       username
       email
       imageUri
-      followers
-      following
+      followers {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      following {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       posts {
         items {
           id
-          videoUri
           title
           location
           description
           userID
-          slides
-          likes
           createdAt
           updatedAt
         }
@@ -69,18 +179,73 @@ export const onDeleteUser = /* GraphQL */ `
       username
       email
       imageUri
-      followers
-      following
+      followers {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      following {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       posts {
         items {
           id
-          videoUri
           title
           location
           description
           userID
-          slides
-          likes
           createdAt
           updatedAt
         }
@@ -95,7 +260,6 @@ export const onCreatePost = /* GraphQL */ `
   subscription OnCreatePost {
     onCreatePost {
       id
-      videoUri
       title
       location
       description
@@ -106,16 +270,65 @@ export const onCreatePost = /* GraphQL */ `
         username
         email
         imageUri
-        followers
-        following
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
         posts {
           nextToken
         }
         createdAt
         updatedAt
       }
-      slides
-      likes
+      slides {
+        id
+        postID
+        videoUri
+      }
+      likes {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       comments {
         items {
           id
@@ -136,7 +349,6 @@ export const onUpdatePost = /* GraphQL */ `
   subscription OnUpdatePost {
     onUpdatePost {
       id
-      videoUri
       title
       location
       description
@@ -147,16 +359,65 @@ export const onUpdatePost = /* GraphQL */ `
         username
         email
         imageUri
-        followers
-        following
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
         posts {
           nextToken
         }
         createdAt
         updatedAt
       }
-      slides
-      likes
+      slides {
+        id
+        postID
+        videoUri
+      }
+      likes {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       comments {
         items {
           id
@@ -177,7 +438,6 @@ export const onDeletePost = /* GraphQL */ `
   subscription OnDeletePost {
     onDeletePost {
       id
-      videoUri
       title
       location
       description
@@ -188,16 +448,65 @@ export const onDeletePost = /* GraphQL */ `
         username
         email
         imageUri
-        followers
-        following
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
         posts {
           nextToken
         }
         createdAt
         updatedAt
       }
-      slides
-      likes
+      slides {
+        id
+        postID
+        videoUri
+      }
+      likes {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       comments {
         items {
           id
@@ -219,32 +528,6 @@ export const onCreateComment = /* GraphQL */ `
     onCreateComment {
       id
       postID
-      post {
-        id
-        videoUri
-        title
-        location
-        description
-        userID
-        user {
-          id
-          name
-          username
-          email
-          imageUri
-          followers
-          following
-          createdAt
-          updatedAt
-        }
-        slides
-        likes
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       content
       userID
       user {
@@ -253,8 +536,24 @@ export const onCreateComment = /* GraphQL */ `
         username
         email
         imageUri
-        followers
-        following
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
         posts {
           nextToken
         }
@@ -271,32 +570,6 @@ export const onUpdateComment = /* GraphQL */ `
     onUpdateComment {
       id
       postID
-      post {
-        id
-        videoUri
-        title
-        location
-        description
-        userID
-        user {
-          id
-          name
-          username
-          email
-          imageUri
-          followers
-          following
-          createdAt
-          updatedAt
-        }
-        slides
-        likes
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       content
       userID
       user {
@@ -305,8 +578,24 @@ export const onUpdateComment = /* GraphQL */ `
         username
         email
         imageUri
-        followers
-        following
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
         posts {
           nextToken
         }
@@ -323,32 +612,6 @@ export const onDeleteComment = /* GraphQL */ `
     onDeleteComment {
       id
       postID
-      post {
-        id
-        videoUri
-        title
-        location
-        description
-        userID
-        user {
-          id
-          name
-          username
-          email
-          imageUri
-          followers
-          following
-          createdAt
-          updatedAt
-        }
-        slides
-        likes
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       content
       userID
       user {
@@ -357,8 +620,24 @@ export const onDeleteComment = /* GraphQL */ `
         username
         email
         imageUri
-        followers
-        following
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
         posts {
           nextToken
         }

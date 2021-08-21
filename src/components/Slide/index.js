@@ -9,12 +9,16 @@ import { useNavigation } from '@react-navigation/native'
 import headshot from '../../assets/headshot.jpeg'
 
 const CONTAINER_PADDING = Dimensions.get('window').width * .05
-const VIDEO_SIZE = Dimensions.get('window').width - (CONTAINER_PADDING * 2)
+const ITEM_HEIGHT = Dimensions.get('window').height-290
+//const VIDEO_SIZE = Dimensions.get('window').width - (CONTAINER_PADDING * 2)
+//const VIDEO_SIZE = Dimensions.get('window').width - 100
 
 {/* Slide component that includes profile, post, title, likes, and description. */}
 const Slide = (props) => {
     const [post, setPost] = useState(props.post);
     const [isLiked, setIsLiked] = useState(false);
+    const VIDEO_SIZE = props.videoSize;
+    const ITEM_HEIGHT = props.itemHeight;
     const navigation = useNavigation();
     //const [videoUri, setVideoUri] = useState('');
 
@@ -89,7 +93,7 @@ const Slide = (props) => {
 
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {height: ITEM_HEIGHT}]}>
 
             {/* Top handle info */}
             <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingBottom: 10}}>
@@ -100,6 +104,7 @@ const Slide = (props) => {
                         <Text style={styles.timestampText}>{post.createdAt}</Text>
                     </View>
                 </TouchableOpacity>
+                {/* TODO: change to delete video if user profile video */}
                 <TouchableOpacity style={{flexDirection: 'row'}} onPress={reportVideo}>
                     <Image style={{ width: 40, height:40 }} source={slideEdit}/>
                 </TouchableOpacity>
@@ -115,7 +120,7 @@ const Slide = (props) => {
                     horizontal={true}
                     showsHorizontalScrollIndicator={true}
                     maxToRenderPerBatch={3}
-                    snapToInterval={VIDEO_SIZE}
+                    snapToInterval={VIDEO_SIZE + 20}
                     snapToAlignment={'start'}
                     decelerationRate={'fast'}
                 />

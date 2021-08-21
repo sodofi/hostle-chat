@@ -1,6 +1,6 @@
 
 import React, {useEffect, useRef, useState} from 'react';
-import {View, Text, Keyboard, TextInput, TouchableOpacity, ActivityIndicator, Switch, KeyboardAvoidingView, TouchableWithoutFeedback} from 'react-native';
+import {View, Text, Keyboard, TextInput, TouchableOpacity, ActivityIndicator, Switch, KeyboardAvoidingView, TouchableWithoutFeedback, Alert} from 'react-native';
 import {v4 as uuidv4} from 'uuid';
 import { Audio, Video } from 'expo-av';
 
@@ -12,10 +12,13 @@ import styles from './styles';
 //import {createPost} from '../../graphql/mutations';
 
 const CreatePost = () => {
+  const [slideTitle, setSlideTitle] = useState('')
   const [description, setDescription] = useState('');
-  const [videoKey, setVideoKey] = useState(null);
-
+  const [location, setLocation] = useState('');
+  //const [videoKey, setVideoKey] = useState(null);
+  //const videoKey = route.params.videoKey;
   const route = useRoute();
+  const videoKey = route.params.videoKey;
   const navigation = useNavigation();
 
 //   const uploadToStorage = async (imagePath) => {
@@ -38,12 +41,18 @@ const CreatePost = () => {
 //     }
 //   };
 
-//   useEffect(() => {
-//     uploadToStorage(route.params.videoUri);
-//   }, []);
+  // useEffect(() => {
+  //   //uploadToStorage(route.params.videoUri);
+  //   //setVideoKey(route.params.videoKey);
+  // }, []);
 
   const onPublish = async () => {
-      //delete line bellow
+    if (!slideTitle) {
+      Alert.alert('Slide title is required');
+      return;
+    }
+    
+    //delete line bellow
     navigation.navigate("Home", { screen: "Home" });
     // create post in the database (API)
     // if (!videoKey) {
@@ -123,8 +132,8 @@ const CreatePost = () => {
       <View style={[styles.line, {paddingTop: 20}]}/>
 
       <TextInput
-          value={description}
-          onChangeText={setDescription}
+          value={slideTitle}
+          onChangeText={setSlideTitle}
           numberOfLines={5}
           placeholder={'Slide Title (Required)'}
           style={styles.textInput}
@@ -143,8 +152,8 @@ const CreatePost = () => {
       <View style={styles.line}/>
 
       <TextInput
-          value={description}
-          onChangeText={setDescription}
+          value={location}
+          onChangeText={setLocation}
           numberOfLines={5}
           placeholder={'Description'}
           style={[styles.textInput, {paddingBottom: 50}]}
@@ -154,13 +163,8 @@ const CreatePost = () => {
       
 
       {/* publish button */}
-      <TouchableOpacity style={{marginBottom: 50}}onPress={onPublish}>
-        <View style={videoKey ? styles.button : styles.buttonDisabled}>
-          {videoKey ? <Text style={styles.buttonText}>Post</Text> : <ActivityIndicator size="small" color="white"/>}
-          {/* <Text style={styles.buttonText}>
-            {videoKey ? 'Post' : 'Not Ready'}
-          </Text> */}
-        </View>
+      <TouchableOpacity style={{marginBottom: 50}} onPress={onPublish} style={slideTitle ? styles.button : styles.buttonDisabled}>
+          <Text style={styles.buttonText}>Post</Text>
       </TouchableOpacity>
       {/* <TouchableOpacity onPress={onPublish}>
         <View style={styles.button}>

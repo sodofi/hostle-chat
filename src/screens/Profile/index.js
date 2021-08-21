@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {View, FlatList, Text, Image, TouchableOpacity, StyleSheet, Alert} from 'react-native';
+import {View, FlatList, Text, Image, TouchableOpacity, StyleSheet, Alert, Modal, Button} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native'
 import headshot from '../../assets/headshot.jpeg'
@@ -23,7 +23,8 @@ import { color } from 'react-native-reanimated';
 
 const Profile = () => {
 
-    const [profile, setProfile] = useState(profileData)
+    const [profile, setProfile] = useState(profileData);
+    const [modalVisible, setModalVisible] = useState(false);
     const [posts, setPosts] = useState(data);
     const [username, setUsername] = useState([]);
     const [profilePic, setProfilePic] = useState(null);
@@ -64,10 +65,30 @@ const Profile = () => {
 
     //optimized renderItem
     const renderItem = useCallback(
-        ({item, index}) => 
-        <TouchableOpacity onLongPress={() => Alert.alert('test')}>
-            <ProfilePost post={item} mode='small' index={index} currentIndex={index}/>
-        </TouchableOpacity>
+        ({item, index}) =>
+        <ProfilePost post={item} mode='small' index={index} currentIndex={index}/> 
+        // <TouchableOpacity onLongPress={() => Alert.alert('test')}>
+        //     {/* <View style={modalStyles.centeredView}>
+        //         <Modal 
+        //             animationType="slide"
+        //             transparent={true}
+        //             visible={modalVisible}
+        //             onRequestClose={() => {
+        //                 Alert.alert("modal has been closed.")
+        //                 setModalVisible(!modalVisible);
+        //             }}
+        //         >
+        //              <View style={modalStyles.centeredView}>
+        //                 <View style={modalStyles.modalView}>
+        //                     <Text>test</Text>
+        //                     <Button onPress={() => setModalVisible(!modalVisible)} title="close"/>
+        //                 </View>
+        //             </View>
+        //         </Modal>
+        //     </View>
+        //      */}
+        //     <ProfilePost post={item} mode='small' index={index} currentIndex={index}/>
+        // </TouchableOpacity>
         , []
     );
 
@@ -75,17 +96,16 @@ const Profile = () => {
     const keyExtractor = useCallback(
         (item) => item.id.toString(),[]
     );
+
     return(
         <View style={styles.container}>
 
             {/* Top half UI */}
             <View style={styles.topContainer}>
-                {/* <Image style={styles.image} source={{uri: profilePic}}/> */}
                 <Image style={styles.image} source={{uri: profile.imageUri}}/>
-                {/* <Text style={styles.usernameText}>@{username}</Text> */}
                 <View style={styles.topRightContainer}>
                     <Text style={styles.numberText}>{profile.name}</Text>
-                    <Text style={styles.usernameText}>{profile.username}</Text>
+                    <Text style={styles.usernameText}>@{profile.username}</Text>
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("EditProfile")}>
                         {/* TODO: if getUser = current authenticated user ? edit : subscribe */}
                         <Text style={{color: 'white', fontWeight: '600', fontSize: 14}}>Edit</Text>
@@ -124,5 +144,49 @@ const Profile = () => {
         
     )
 }
+
+const modalStyles = StyleSheet.create({
+    centeredView: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 22
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: "white",
+      borderRadius: 20,
+      padding: 35,
+      alignItems: "center",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5
+    },
+    button: {
+      borderRadius: 20,
+      padding: 10,
+      elevation: 2
+    },
+    buttonOpen: {
+      backgroundColor: "#F194FF",
+    },
+    buttonClose: {
+      backgroundColor: "#2196F3",
+    },
+    textStyle: {
+      color: "white",
+      fontWeight: "bold",
+      textAlign: "center"
+    },
+    modalText: {
+      marginBottom: 15,
+      textAlign: "center"
+    }
+  });
 
 export default Profile;

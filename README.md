@@ -24,3 +24,4 @@
 ###### amplify push --> build all local backend resources and provisions it in the cloud
 ###### amplify publish --> build all your local backend and frontend resources
 ###### amplify console api --> open up console
+###### amplify status --> gives current status of Amplify project

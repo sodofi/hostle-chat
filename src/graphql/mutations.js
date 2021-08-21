@@ -12,18 +12,73 @@ export const createUser = /* GraphQL */ `
       username
       email
       imageUri
-      followers
-      following
+      followers {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      following {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       posts {
         items {
           id
-          videoUri
           title
           location
           description
           userID
-          slides
-          likes
           createdAt
           updatedAt
         }
@@ -45,18 +100,73 @@ export const updateUser = /* GraphQL */ `
       username
       email
       imageUri
-      followers
-      following
+      followers {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      following {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       posts {
         items {
           id
-          videoUri
           title
           location
           description
           userID
-          slides
-          likes
           createdAt
           updatedAt
         }
@@ -78,18 +188,73 @@ export const deleteUser = /* GraphQL */ `
       username
       email
       imageUri
-      followers
-      following
+      followers {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      following {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       posts {
         items {
           id
-          videoUri
           title
           location
           description
           userID
-          slides
-          likes
           createdAt
           updatedAt
         }
@@ -107,7 +272,6 @@ export const createPost = /* GraphQL */ `
   ) {
     createPost(input: $input, condition: $condition) {
       id
-      videoUri
       title
       location
       description
@@ -118,16 +282,65 @@ export const createPost = /* GraphQL */ `
         username
         email
         imageUri
-        followers
-        following
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
         posts {
           nextToken
         }
         createdAt
         updatedAt
       }
-      slides
-      likes
+      slides {
+        id
+        postID
+        videoUri
+      }
+      likes {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       comments {
         items {
           id
@@ -151,7 +364,6 @@ export const updatePost = /* GraphQL */ `
   ) {
     updatePost(input: $input, condition: $condition) {
       id
-      videoUri
       title
       location
       description
@@ -162,16 +374,65 @@ export const updatePost = /* GraphQL */ `
         username
         email
         imageUri
-        followers
-        following
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
         posts {
           nextToken
         }
         createdAt
         updatedAt
       }
-      slides
-      likes
+      slides {
+        id
+        postID
+        videoUri
+      }
+      likes {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       comments {
         items {
           id
@@ -195,7 +456,6 @@ export const deletePost = /* GraphQL */ `
   ) {
     deletePost(input: $input, condition: $condition) {
       id
-      videoUri
       title
       location
       description
@@ -206,16 +466,65 @@ export const deletePost = /* GraphQL */ `
         username
         email
         imageUri
-        followers
-        following
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
         posts {
           nextToken
         }
         createdAt
         updatedAt
       }
-      slides
-      likes
+      slides {
+        id
+        postID
+        videoUri
+      }
+      likes {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       comments {
         items {
           id
@@ -240,32 +549,6 @@ export const createComment = /* GraphQL */ `
     createComment(input: $input, condition: $condition) {
       id
       postID
-      post {
-        id
-        videoUri
-        title
-        location
-        description
-        userID
-        user {
-          id
-          name
-          username
-          email
-          imageUri
-          followers
-          following
-          createdAt
-          updatedAt
-        }
-        slides
-        likes
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       content
       userID
       user {
@@ -274,8 +557,24 @@ export const createComment = /* GraphQL */ `
         username
         email
         imageUri
-        followers
-        following
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
         posts {
           nextToken
         }
@@ -295,32 +594,6 @@ export const updateComment = /* GraphQL */ `
     updateComment(input: $input, condition: $condition) {
       id
       postID
-      post {
-        id
-        videoUri
-        title
-        location
-        description
-        userID
-        user {
-          id
-          name
-          username
-          email
-          imageUri
-          followers
-          following
-          createdAt
-          updatedAt
-        }
-        slides
-        likes
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       content
       userID
       user {
@@ -329,8 +602,24 @@ export const updateComment = /* GraphQL */ `
         username
         email
         imageUri
-        followers
-        following
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
         posts {
           nextToken
         }
@@ -350,32 +639,6 @@ export const deleteComment = /* GraphQL */ `
     deleteComment(input: $input, condition: $condition) {
       id
       postID
-      post {
-        id
-        videoUri
-        title
-        location
-        description
-        userID
-        user {
-          id
-          name
-          username
-          email
-          imageUri
-          followers
-          following
-          createdAt
-          updatedAt
-        }
-        slides
-        likes
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       content
       userID
       user {
@@ -384,8 +647,24 @@ export const deleteComment = /* GraphQL */ `
         username
         email
         imageUri
-        followers
-        following
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
         posts {
           nextToken
         }

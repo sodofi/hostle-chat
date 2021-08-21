@@ -1,5 +1,7 @@
 import React, {useEffect, useState, useCallback, useRef, useForceUpdate} from 'react';
 import {View, FlatList, Dimensions, Text, StyleSheet} from 'react-native';
+const CONTAINER_PADDING = Dimensions.get('window').width * .05
+const VIDEO_SIZE = Dimensions.get('window').width - (CONTAINER_PADDING * 2)
 
 //fake data with video posts
 //TODO: delete this line
@@ -22,7 +24,7 @@ const Home = () => {
     //optimized renderItem
     const renderItem = useCallback(
         ({item, index}) => 
-            <Slide post={item} index={index}/>, []
+            <Slide post={item} index={index} videoSize={VIDEO_SIZE} itemHeight={ITEM_HEIGHT}/>, []
     );
 
     //creates key for flatlist

@@ -6,7 +6,7 @@ import {
   Text,
   TouchableOpacity,
   SafeAreaView,
-  Button,
+  Alert,
 } from "react-native";
 
 import ProgressCircle from 'react-native-progress-circle'
@@ -122,8 +122,24 @@ export default function VideoScreen() {
     setIsPreview(false);
     setVideoSource(null);
     console.log(videoSource)
-    navigation.navigate("CreatePost", {videoUri: videoSource})
+    //navigation.navigate("CreatePost", {videoUri: videoSource})
+    navigation.navigate("AddPost", {videoUri: videoSource})
   };
+
+  // const createPostAlert = () => 
+  //   Alert.alert(
+  //     "Create a new post or add to an existing slide?",
+  //     "",
+  //     [
+  //       {
+  //         text: "New",
+  //         onPress: () => console.log("Cancel Pressed"),
+          
+  //       },
+  //       { text: "Add", onPress: () => console.log("OK Pressed") }
+  //     ],
+  //     { cancelable: false }
+  // );
 
 
   const renderCancelPreviewButton = () => (

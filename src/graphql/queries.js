@@ -9,18 +9,73 @@ export const getUser = /* GraphQL */ `
       username
       email
       imageUri
-      followers
-      following
+      followers {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      following {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       posts {
         items {
           id
-          videoUri
           title
           location
           description
           userID
-          slides
-          likes
           createdAt
           updatedAt
         }
@@ -44,8 +99,24 @@ export const listUsers = /* GraphQL */ `
         username
         email
         imageUri
-        followers
-        following
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
         posts {
           nextToken
         }
@@ -60,7 +131,6 @@ export const getPost = /* GraphQL */ `
   query GetPost($id: ID!) {
     getPost(id: $id) {
       id
-      videoUri
       title
       location
       description
@@ -71,16 +141,65 @@ export const getPost = /* GraphQL */ `
         username
         email
         imageUri
-        followers
-        following
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
         posts {
           nextToken
         }
         createdAt
         updatedAt
       }
-      slides
-      likes
+      slides {
+        id
+        postID
+        videoUri
+      }
+      likes {
+        id
+        name
+        username
+        email
+        imageUri
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       comments {
         items {
           id
@@ -106,7 +225,6 @@ export const listPosts = /* GraphQL */ `
     listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        videoUri
         title
         location
         description
@@ -117,13 +235,23 @@ export const listPosts = /* GraphQL */ `
           username
           email
           imageUri
-          followers
-          following
           createdAt
           updatedAt
         }
-        slides
-        likes
+        slides {
+          id
+          postID
+          videoUri
+        }
+        likes {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
         comments {
           nextToken
         }
@@ -139,32 +267,6 @@ export const getComment = /* GraphQL */ `
     getComment(id: $id) {
       id
       postID
-      post {
-        id
-        videoUri
-        title
-        location
-        description
-        userID
-        user {
-          id
-          name
-          username
-          email
-          imageUri
-          followers
-          following
-          createdAt
-          updatedAt
-        }
-        slides
-        likes
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       content
       userID
       user {
@@ -173,8 +275,24 @@ export const getComment = /* GraphQL */ `
         username
         email
         imageUri
-        followers
-        following
+        followers {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
+        following {
+          id
+          name
+          username
+          email
+          imageUri
+          createdAt
+          updatedAt
+        }
         posts {
           nextToken
         }
@@ -196,18 +314,6 @@ export const listComments = /* GraphQL */ `
       items {
         id
         postID
-        post {
-          id
-          videoUri
-          title
-          location
-          description
-          userID
-          slides
-          likes
-          createdAt
-          updatedAt
-        }
         content
         userID
         user {
@@ -216,8 +322,6 @@ export const listComments = /* GraphQL */ `
           username
           email
           imageUri
-          followers
-          following
           createdAt
           updatedAt
         }
