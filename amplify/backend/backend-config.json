@@ -18,7 +18,7 @@
     }
   },
   "auth": {
-    "slidevlogsc3227e37": {
+    "slidevlogsb7cef162": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
