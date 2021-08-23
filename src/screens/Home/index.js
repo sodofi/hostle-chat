@@ -5,7 +5,7 @@ const VIDEO_SIZE = Dimensions.get('window').width - (CONTAINER_PADDING * 2)
 
 //fake data with video posts
 //TODO: delete this line
-import posts from '../../../data/slides'
+//import posts from '../../../data/slides'
 
 //slide component
 import Slide from '../../components/Slide'
@@ -19,7 +19,7 @@ const ITEM_HEIGHT = Dimensions.get('window').height-290;
 const Home = () => {
 
     //TODO: uncomment this line
-    //const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     //optimized renderItem
     const renderItem = useCallback(
@@ -49,8 +49,7 @@ const Home = () => {
                 const response = await API.graphql(graphqlOperation(listPosts));
                 console.log(response);
                 console.log('home line 72')
-                //TODO: set posts to
-                //setPosts(response.data.listPosts.items)
+                setPosts(response.data.listPosts.items)
             } catch (e) {
                 console.error(e);
             }

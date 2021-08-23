@@ -10,6 +10,11 @@
       "StackName": "amplify-slidevlogs-dev-60614",
       "StackId": "arn:aws:cloudformation:us-west-2:488048821769:stack/amplify-slidevlogs-dev-60614/200b72d0-df24-11eb-bacf-0238bddd7185",
       "AmplifyAppId": "d2xkbkj24lh5tk"
+    },
+    "categories": {
+      "auth": {
+        "slidevlogsc3227e37": {}
+      }
     }
   }
 }

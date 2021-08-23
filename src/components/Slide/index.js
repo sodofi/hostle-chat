@@ -114,7 +114,7 @@ const Slide = (props) => {
             {/* FlatList of slide videos */}
             <View>
                 <FlatList
-                    data={post.videos}
+                    data={post.slides}
                     renderItem={renderItem}
                     keyExtractor={keyExtractor}
                     horizontal={true}

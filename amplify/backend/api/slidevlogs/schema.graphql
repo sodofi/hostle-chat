@@ -22,8 +22,8 @@ type Post @model @key(name: "byUser", fields: ["userID"]) {
 }
 
 type Slide {
-  id: ID!
-  postID: ID!
+  id: ID
+  postID: ID
   videoUri: String!
 }
 
