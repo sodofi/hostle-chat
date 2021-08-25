@@ -51,10 +51,10 @@ const Slide = (props) => {
 
     const onLikePress = () => {
         const likesToAdd = isLiked ? -1 : 1;
-        setPost({
-            ...post,
-            likes: post.likes + likesToAdd,
-        });
+        // setPost({
+        //     ...post,
+        //     likes: post.likes + likesToAdd,
+        // });
         setIsLiked(!isLiked);
         console.log(isLiked)
         console.log(post.likes)
@@ -129,7 +129,7 @@ const Slide = (props) => {
             {/* Video info */}
             <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 10}}>
                 <View>
-                    <Text style ={styles.titleText}>{post.slideTitle}</Text>
+                    <Text style ={styles.titleText}>{post.title}</Text>
                     <Text style ={styles.locationText}>{post.location}</Text>
                 </View>
                 <TouchableOpacity style={styles.likeContainer} onPress={onLikePress}>

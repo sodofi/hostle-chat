@@ -4,6 +4,7 @@ import {Video } from 'expo-av';
 import SlideVideo from '../Slide/slideVideo'
 import Slide from '../Slide'
 import styles from './styles';
+import moment from 'moment';
 
 const VIDEO_SIZE_2 = Dimensions.get('window').width - 100
 
@@ -82,7 +83,7 @@ const Post = (props) => {
     
     //creates key for flatlist
     const keyExtractor = useCallback(
-        (item) => item.id.toString(),[]
+        (item) => item.id,[]
     );
 
 
@@ -90,7 +91,7 @@ const Post = (props) => {
         
         <View style={styles.container}>
             <FlatList
-                data={post.videos}
+                data={post.slides}
                 renderItem={renderItem}
                 keyExtractor={keyExtractor}
                 horizontal={true}
@@ -101,8 +102,8 @@ const Post = (props) => {
                 decelerationRate={'fast'}
             />
             <TouchableOpacity onPress={()=>setModalVisible(true)}>
-                <Text style={styles.header1}>{post.slideTitle}</Text>
-                <Text style={styles.header2}>{post.createdAt}</Text>
+                <Text style={styles.header1}>{post.title}</Text>
+                <Text style={styles.header2}>{moment(post.createdAt).format("MMMM DD, Y")}</Text>
             </TouchableOpacity>
 
             

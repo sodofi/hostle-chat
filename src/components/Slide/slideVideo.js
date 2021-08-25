@@ -9,7 +9,7 @@ import { Video } from 'expo-av';
 const SlideVideo = (props) => {
 
     const [paused, setPaused] = useState(true);
-    const [videoUri, setVideoUri] = useState('');
+    //const [videoUri, setVideoUri] = useState('');
     const VIDEO_SIZE = props.videoSize;
 
     const getVideoUri = async () => {
@@ -23,6 +23,8 @@ const SlideVideo = (props) => {
     
     //called on Slide render to get video uri from storage
     useEffect(() => {
+        console.log('slide video:')
+        console.log(props.videoUri)
         console.log(props)
         // TODO: uncomment line
         //getVideoUri();

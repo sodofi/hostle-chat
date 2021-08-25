@@ -52,8 +52,8 @@ const Profile = () => {
                 setUsername(getUserResponse.data.getUser.username)
                 setName(getUserResponse.data.getUser.name)
                 //setUsernam
-                // console.log("POSTS:")
-                //console.log(getUserResponse.data.getUser.posts)
+                console.log("POSTS:")
+                console.log(getUserResponse.data.getUser.posts)
                 setPosts(getUserResponse.data.getUser.posts.items)
                 setImageUri(getUserResponse.data.getUser.imageUri)
                 //console.log("ACTIVE USER: ")

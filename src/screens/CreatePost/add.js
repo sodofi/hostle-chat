@@ -3,7 +3,7 @@ import React, {useEffect, useRef, useCallback, useState} from 'react';
 import {View, Text, StyleSheet, Dimensions, TouchableOpacity, FlatList, Switch, ActivityIndicator, Alert} from 'react-native';
 import {v4 as uuidv4} from 'uuid';
 import { Audio, Video } from 'expo-av';
-import profileData from '../../../data/profile'
+//import profileData from '../../../data/profile'
 
 const WINDOW_WIDTH = Dimensions.get("window").width;
 import {Storage, API, graphqlOperation, Auth} from 'aws-amplify';
@@ -11,6 +11,7 @@ import {useRoute, useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {createPost} from '../../graphql/mutations';
+import { updatePost } from '../../graphql/mutations';
 import { getUser } from '../../graphql/queries';
 
 const AddPost = () => {
@@ -46,6 +47,34 @@ const AddPost = () => {
       console.log(route.params.videoUri);
       console.log('videoUri: ' + videoUri)
       uploadToStorage(route.params.videoUri);
+      const fetchUser = async () => {
+            
+        try {
+            const userInfo = await Auth.currentAuthenticatedUser({bypassCache: true});
+            //check if the user exits in database
+            const getUserResponse = await API.graphql(
+                graphqlOperation(
+                getUser, {id: userInfo.attributes.sub}
+                )
+            );
+            //console.log(getUserResponse.data.getUser)
+            //setProfile(getUserResponse.data.getUser)
+            //console.log(getUserResponse.data.getUser.username)
+            //setUsername(getUserResponse.data.getUser.username)
+            //setName(getUserResponse.data.getUser.name)
+            //setUsernam
+            console.log("POSTS:")
+            console.log(getUserResponse.data.getUser.posts)
+            setPosts(getUserResponse.data.getUser.posts.items)
+            //setImageUri(getUserResponse.data.getUser.imageUri)
+            //console.log("ACTIVE USER: ")
+            //console.log(getUserResponse);
+
+        } catch (e) {
+            console.error(e);
+        }
+    };
+    fetchUser();
   }, []);
 
   const onPublish = async () => {
@@ -91,29 +120,82 @@ const AddPost = () => {
     // }
   };
 
-  const addVideo = (item) => {
-      {videoKey ?
-      console.log('added video to:' + item.slideTitle) :
-      Alert.alert('Video is still loading') }
+  const addVideo = async (item) => {
+      if (!videoKey) {
+        Alert.alert('Video is still loading');
+        return;
+      }
+
+      try {
+
+        const newUri = 'https://slidevlogs42c7fe27432f4112aa345edccc01f45560614-dev.s3.us-west-2.amazonaws.com/public/' + videoKey;
+        console.log('newUri')
+        console.log(newUri)
+
+        console.log(item.id);
+        //const userInfo = await Auth.currentAuthenticatedUser();
+  
+        // const newPost = {
+        //   title: slideTitle,
+        //   location: location,
+        //   description: description,
+        //   userID: userInfo.attributes.sub,
+        //   slides: {
+        //     videoUri: newUri,
+        //   }
+        // };
+  
+        const response = await API.graphql(
+          graphqlOperation(updatePost, {input: {id: item.id, slides: {videoUri: newUri}}}),
+        );
+        
+        if (response){
+          console.log(response)
+          //console.log(videoKey)
+          navigation.navigate("Home", { screen: "Home" });
+        }
+      } catch (e) {
+        console.error(e);
+      }
+
+
+
   }
 
+    // //optimized renderItem
+    // const renderItem = useCallback(
+    // ({item, index}) => 
+    // <View style={styles.button2}>
+    //     <View>
+    //         <Text style={styles.header1}>{item.slideTitle}</Text>
+    //         <Text style={styles.header2}>{item.createdAt}</Text>
+    //     </View>
+    //     <TouchableOpacity onPress={() => addVideo(item)}>
+    //         <View style={videoKey ? styles.postButton : styles.postButtonDisabled}>
+    //       {videoKey ? <Ionicons name={'checkmark'} size={20} color={'white'}/> : <ActivityIndicator size="small" color="white"/>}
+    //     </View>
+    //     </TouchableOpacity>
+    // </View>
+    // //Renders slide video
+    // , []
+    // );
+
     //optimized renderItem
-    const renderItem = useCallback(
-    ({item, index}) => 
-    <View style={styles.button2}>
-        <View>
-            <Text style={styles.header1}>{item.slideTitle}</Text>
-            <Text style={styles.header2}>{item.createdAt}</Text>
-        </View>
-        <TouchableOpacity onPress={() => addVideo(item)}>
-            <View style={videoKey ? styles.postButton : styles.postButtonDisabled}>
-          {videoKey ? <Ionicons name={'checkmark'} size={20} color={'white'}/> : <ActivityIndicator size="small" color="white"/>}
-        </View>
-        </TouchableOpacity>
-    </View>
-    //Renders slide video
-    , []
-    );
+    const renderItem = ({item, index}) => (
+      <View style={styles.button2}>
+          <View>
+              <Text style={styles.header1}>{item.title}</Text>
+              <Text style={styles.header2}>{item.updatedAt}</Text>
+          </View>
+          <TouchableOpacity onPress={() => addVideo(item)}>
+              <View style={videoKey ? styles.postButton : styles.postButtonDisabled}>
+            {videoKey ? <Ionicons name={'checkmark'} size={20} color={'white'}/> : <ActivityIndicator size="small" color="white"/>}
+          </View>
+          </TouchableOpacity>
+      </View>
+      //Renders slide video
+      // , []
+      );
 
     //creates key for flatlist
     const keyExtractor = useCallback(
@@ -149,15 +231,10 @@ const AddPost = () => {
       <Text style={styles.textInput}>Or add to:</Text>
 
       <FlatList
-                data={profileData.posts}
+                data={posts}
                 renderItem={renderItem}
                 keyExtractor={keyExtractor}
     />
-      {/* <TouchableOpacity onPress={onPublish}>
-        <View style={styles.button}>
-          <Text style={styles.buttonText}>Publish</Text>
-        </View>
-      </TouchableOpacity> */}
       </View>
   );
 };
