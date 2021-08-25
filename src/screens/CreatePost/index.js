@@ -4,12 +4,12 @@ import {View, Text, Keyboard, TextInput, TouchableOpacity, ActivityIndicator, Sw
 import {v4 as uuidv4} from 'uuid';
 import { Audio, Video } from 'expo-av';
 
-//import {Storage, API, graphqlOperation, Auth} from 'aws-amplify';
+import {Storage, API, graphqlOperation, Auth} from 'aws-amplify';
 import {useRoute, useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import styles from './styles';
-//import {createPost} from '../../graphql/mutations';
+import {createPost} from '../../graphql/mutations';
 
 const CreatePost = () => {
   const [slideTitle, setSlideTitle] = useState('')
@@ -53,39 +53,44 @@ const CreatePost = () => {
     }
     
     //delete line bellow
-    navigation.navigate("Home", { screen: "Home" });
+    //navigation.navigate("Home", { screen: "Home" });
     // create post in the database (API)
-    // if (!videoKey) {
-    //   console.warn('Video is not yet uploaded');
-    //   return;
-    // }
+    if (!videoKey) {
+      console.warn('Video is not yet uploaded');
+      return;
+    }
 
-    // try {
+    try {
 
-    //   console.log('video key')
-    //   console.log(videoKey)
-    //   const newUri = 'https://easyrecruitposts103002-dev.s3-us-west-2.amazonaws.com/public/' + videoKey;
-    //   console.log('newUri')
-    //   console.log(newUri)
-    //   const userInfo = await Auth.currentAuthenticatedUser();
+      console.log('video key')
+      console.log(videoKey)
+      const newUri = 'https://slidevlogs42c7fe27432f4112aa345edccc01f45560614-dev.s3.us-west-2.amazonaws.com/public/' + videoKey;
+      console.log('newUri')
+      console.log(newUri)
+      const userInfo = await Auth.currentAuthenticatedUser();
 
-    //   const newPost = {
-    //     videoUri: newUri,
-    //     description: description,
-    //     userID: userInfo.attributes.sub,
-    //     songID: 'b6e2ee3a-04a7-4b25-aef5-90b41e4bba33',
-    //   };
+      const newPost = {
+        title: slideTitle,
+        location: location,
+        description: description,
+        userID: userInfo.attributes.sub,
+        slides: {
+          videoUri: newUri,
+        }
+      };
 
-    //   const response = await API.graphql(
-    //     graphqlOperation(createPost, {input: newPost}),
-    //   );
+      const response = await API.graphql(
+        graphqlOperation(createPost, {input: newPost}),
+      );
       
-    //   if (response){
-    //     navigation.navigate("Home", { screen: "Home" });
-    //   }
-    // } catch (e) {
-    //   console.error(e);
-    // }
+      if (response){
+        console.log(response)
+        console.log(videoKey)
+        navigation.navigate("Home", { screen: "Home" });
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const SettingButton = ({icon, text}) => {
@@ -142,8 +147,8 @@ const CreatePost = () => {
       <View style={styles.line}/>
 
       <TextInput
-          value={description}
-          onChangeText={setDescription}
+          value={location}
+          onChangeText={setLocation}
           numberOfLines={5}
           placeholder={'Location'}
           style={styles.textInput}
@@ -152,8 +157,8 @@ const CreatePost = () => {
       <View style={styles.line}/>
 
       <TextInput
-          value={location}
-          onChangeText={setLocation}
+          value={description}
+          onChangeText={setDescription}
           numberOfLines={5}
           placeholder={'Description'}
           style={[styles.textInput, {paddingBottom: 50}]}

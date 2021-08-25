@@ -57,8 +57,8 @@ const AddPost = () => {
       Alert.alert('Video is still loading');
       return;
     }
-    //console.log('addPost line 55: ' + videoUri)
-    //navigation.navigate("CreatePost", {videoKey: videoKey, videoUri: videoUri});
+    console.log('addPost line 55: ' + videoUri)
+    navigation.navigate("CreatePost", {videoKey: videoKey, videoUri: videoUri});
 
     
 

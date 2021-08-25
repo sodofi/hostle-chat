@@ -88,7 +88,7 @@ const Slide = (props) => {
 
     //creates key for flatlist
     const keyExtractor = useCallback(
-        (item) => item.id.toString(),[]
+        (item) => item.id,[]
     );
 
 

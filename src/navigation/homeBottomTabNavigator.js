@@ -32,7 +32,9 @@ const HomeBottomTabNavigator = () => {
                 options={{
                     tabBarIcon: ({focused}) => (
                         <Ionicons name={focused? 'home' : 'home-outline'} size={24} />
-                    )
+                    ),
+                    
+                    
                     
                 }}
             />
@@ -51,7 +53,9 @@ const HomeBottomTabNavigator = () => {
                 options={{
                     tabBarIcon: ({}) => (
                         <Image source={Post} style={{width: 40, height: 40}} />
-                    )
+                    ),
+                    tabBarLabel: 'Camera',
+                    unmountOnBlur: true,
                 }}
             />
             {/* <Tab.Screen 
@@ -69,7 +73,9 @@ const HomeBottomTabNavigator = () => {
                 options={{
                     tabBarIcon: ({focused}) => (
                         <Ionicons name={focused? 'person' : 'person-outline'} size={24} />
-                    )
+                    ), 
+                    tabBarLabel: 'Profile',
+                    unmountOnBlur: true,
                 }}
             />
         </Tab.Navigator>
