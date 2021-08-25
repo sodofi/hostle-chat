@@ -1,6 +1,6 @@
 {
     "identityPoolName": "slidevlogsb7cef162_identitypool_b7cef162",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "slidevb7cef162",
     "userPoolName": "slidevlogsb7cef162_userpool_b7cef162",
     "autoVerifiedAttributes": [

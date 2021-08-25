@@ -111,7 +111,7 @@ export default function VideoScreen() {
 
   //function to cancel preview
   const cancelPreview = async () => {
-    console.log('touched')
+    //console.log('touched')
     await cameraRef.current.resumePreview();
     setIsPreview(false);
     setVideoSource(null);
@@ -125,22 +125,6 @@ export default function VideoScreen() {
     //navigation.navigate("CreatePost", {videoUri: videoSource})
     navigation.navigate("AddPost", {videoUri: videoSource})
   };
-
-  // const createPostAlert = () => 
-  //   Alert.alert(
-  //     "Create a new post or add to an existing slide?",
-  //     "",
-  //     [
-  //       {
-  //         text: "New",
-  //         onPress: () => console.log("Cancel Pressed"),
-          
-  //       },
-  //       { text: "Add", onPress: () => console.log("OK Pressed") }
-  //     ],
-  //     { cancelable: false }
-  // );
-
 
   const renderCancelPreviewButton = () => (
     <View>
@@ -181,15 +165,15 @@ export default function VideoScreen() {
     <View style={{flex: 1}}>
         <View style={styles.sideBar} >
           <TouchableOpacity disabled={!isCameraReady} onPress={switchCamera}>
-            <Ionicons name={'flash-outline'} size={closeButtonSize} color={'black'} />
+            <Ionicons name={'flash-outline'} size={closeButtonSize} color={'white'} />
             <Text style={styles.text}>Flash</Text>
           </TouchableOpacity>
           <TouchableOpacity disabled={!isCameraReady} onPress={switchCamera}>
-            <Ionicons name={'md-camera-reverse-outline'} size={closeButtonSize} color={'black'} />
+            <Ionicons name={'md-camera-reverse-outline'} size={closeButtonSize} color={'white'} />
             <Text style={styles.text}>Flip</Text>
           </TouchableOpacity>
           <TouchableOpacity disabled={!isCameraReady} onPress={openImagePickerAsync}>
-            <Ionicons style={{paddingTop: 10, alignSelf: 'center'}} name={'share-outline'} size={closeButtonSize} color={'black'} />
+            <Ionicons style={{paddingTop: 10, alignSelf: 'center'}} name={'share-outline'} size={closeButtonSize} color={'white'} />
             <Text style={styles.text}>Upload</Text>
           </TouchableOpacity>
         </View>
@@ -227,6 +211,7 @@ export default function VideoScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.videoContainer}>
+       
       <Camera
         ref={cameraRef}
         style={styles.video}
@@ -237,6 +222,8 @@ export default function VideoScreen() {
           console.log("cammera error", error);
         }}
       />
+       <View style={styles.videoBorder}/>
+       <View style={styles.videoBorder2}/>
       </View>
 
        

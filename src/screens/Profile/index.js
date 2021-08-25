@@ -46,7 +46,7 @@ const Profile = () => {
                     getUser, {id: userInfo.attributes.sub}
                     )
                 );
-                console.log(getUserResponse.data.getUser)
+                //console.log(getUserResponse.data.getUser)
                 //setProfile(getUserResponse.data.getUser)
                 //console.log(getUserResponse.data.getUser.username)
                 setUsername(getUserResponse.data.getUser.username)

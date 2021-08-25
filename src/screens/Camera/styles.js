@@ -8,9 +8,9 @@ const captureSize = Math.floor(WINDOW_HEIGHT * 0.1);
 const styles = StyleSheet.create({
     //used
     capture: {
-      backgroundColor: "#e4e4e4",
+      backgroundColor: "#fff",
       borderRadius: 5,
-      borderWidth: 3,
+      borderWidth: 0,
       height: captureSize,
       width: captureSize,
       borderRadius: Math.floor(captureSize / 2),
@@ -29,7 +29,13 @@ const styles = StyleSheet.create({
       zIndex: 2,
     },
     container: {
-      ...StyleSheet.absoluteFillObject,
+      //flex: 1,
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      //...StyleSheet.absoluteFillObject,
       
     },
     //used
@@ -101,7 +107,7 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       alignItems: "center",
       backgroundColor: "transparent",
-      opacity: 0.7
+      opacity: 0.9
     },
     //used
     recordTitle: {
@@ -113,8 +119,8 @@ const styles = StyleSheet.create({
     //used
     recordDot: {
       borderRadius: 10,
-      height: 7,
-      width: 7,
+      height: 10,
+      width: 10,
       backgroundColor: "#fe2c55",
       marginHorizontal: 5,
     },
@@ -128,7 +134,7 @@ const styles = StyleSheet.create({
       //position: "absolute",
       //right: WINDOW_WIDTH/30,
       //top: WINDOW_HEIGHT/50,
-      //zIndex: 1,
+      zIndex: 10,
       flexDirection: 'row',
       width: '100%',
       justifyContent: 'space-between'
@@ -138,25 +144,40 @@ const styles = StyleSheet.create({
       fontSize: 12,
       fontWeight: "600",
       textAlign: 'center',
-      color: "#000",
+      color: "#fff",
+      zIndex: 2,
     },
     video: {
-      //height: WINDOW_HEIGHT - 90,
+      //height: WINDOW_HEIGHT,
       //borderWidth: 100,
       //borderRightWidth: 30,
-      //...StyleSheet.absoluteFillObject,
+      ...StyleSheet.absoluteFillObject,
       //borderBottomWidth: (WINDOW_HEIGHT - WINDOW_WIDTH)/3,
       //borderTopWidth: (WINDOW_HEIGHT - WINDOW_WIDTH)/3,
       //marginVertical: -10,
       //borderColor: 'rgba(0, 0, 0, .2)',
       //borderRadius: 20,
-      height: WINDOW_WIDTH - 15,
-      width: WINDOW_WIDTH - 15,
+      //height: WINDOW_WIDTH - 15,
+      //width: WINDOW_WIDTH - 15,
+    },
+    videoBorder: {
+      width: WINDOW_WIDTH,
+      height: (WINDOW_HEIGHT - WINDOW_WIDTH)/3,
+      position: 'absolute',
+      top: 0,
+      backgroundColor: 'rgba(0, 0, 0, .4)'
+    },
+    videoBorder2: {
+      width: WINDOW_WIDTH,
+      height: (WINDOW_HEIGHT - WINDOW_WIDTH)/3,
+      position: 'absolute',
+      bottom: 0,
+      backgroundColor: 'rgba(0, 0, 0, .4)'
     },
     videoContainer: {
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: 'white',
+      backgroundColor: 'rgba(0, 0, 0, .1)',
       ...StyleSheet.absoluteFillObject,
     }
   });

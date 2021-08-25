@@ -6,44 +6,46 @@ import { Audio, Video } from 'expo-av';
 import profileData from '../../../data/profile'
 
 const WINDOW_WIDTH = Dimensions.get("window").width;
-//import {Storage, API, graphqlOperation, Auth} from 'aws-amplify';
+import {Storage, API, graphqlOperation, Auth} from 'aws-amplify';
 import {useRoute, useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-//import {createPost} from '../../graphql/mutations';
+import {createPost} from '../../graphql/mutations';
+import { getUser } from '../../graphql/queries';
 
 const AddPost = () => {
-    const [description, setDescription] = useState('');
-    //const [videoKey, setVideoKey] = useState(null);
-    const videoKey = true;
+    //const [description, setDescription] = useState('');
+    const [videoKey, setVideoKey] = useState(null);
+    const [posts, setPosts] = useState([]);
+    //const videoKey = true;
     const route = useRoute();
     const videoUri = route.params.videoUri;
     const navigation = useNavigation();
 
-//   const uploadToStorage = async (imagePath) => {
-//     try {
-//       const response = await fetch(imagePath);
+  const uploadToStorage = async (imagePath) => {
+    try {
+      const response = await fetch(imagePath);
 
-//       const blob = await response.blob();
+      const blob = await response.blob();
 
-//       const filename = `${uuidv4()}.mp4`;
-//       const acl = 'public-read'
-//       // const s3Response = await Storage.put(filename, blob, {
-//       //   acl: 'public-read'
-//       // });
+      const filename = `${uuidv4()}.mp4`;
+      const acl = 'public-read'
+      // const s3Response = await Storage.put(filename, blob, {
+      //   acl: 'public-read'
+      // });
 
-//       const s3Response = await Storage.put(filename, blob, acl);
+      const s3Response = await Storage.put(filename, blob, acl);
 
-//       setVideoKey(s3Response.key);
-//     } catch (e) {
-//       console.error(e);
-//     }
-//   };
+      setVideoKey(s3Response.key);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   useEffect(() => {
       console.log(route.params.videoUri);
       console.log('videoUri: ' + videoUri)
-    //uploadToStorage(route.params.videoUri);
+      uploadToStorage(route.params.videoUri);
   }, []);
 
   const onPublish = async () => {
@@ -55,8 +57,8 @@ const AddPost = () => {
       Alert.alert('Video is still loading');
       return;
     }
-    console.log('addPost line 55: ' + videoUri)
-    navigation.navigate("CreatePost", {videoKey: videoKey, videoUri: videoUri});
+    //console.log('addPost line 55: ' + videoUri)
+    //navigation.navigate("CreatePost", {videoKey: videoKey, videoUri: videoUri});
 
     
 
@@ -70,6 +72,7 @@ const AddPost = () => {
     //   const userInfo = await Auth.currentAuthenticatedUser();
 
     //   const newPost = {
+
     //     videoUri: newUri,
     //     description: description,
     //     userID: userInfo.attributes.sub,
