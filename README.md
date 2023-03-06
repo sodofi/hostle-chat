@@ -1,4 +1,4 @@
-# slide-vlogs
+# hostle-chat
 
 ## Setting up project in expo
 ###### npm install expo-cli --global
